@@ -11,7 +11,9 @@ public class Room {
         this.locked_door = locked_door;
         this.key_type= key_type;
     }
-
+    /*
+     * Accessor for getlocked_door
+     */
     public boolean getlocked_door() {
         return this.locked_door;
     }
