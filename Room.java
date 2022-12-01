@@ -12,6 +12,9 @@ public class Room {
         this.key_type= key_type;
     }
 
+    public boolean getlocked_door() {
+        return this.locked_door;
+    }
     public String toString() {
         return "This "+ this.name + " needs a " + this.key_type + ".";
     }
@@ -19,6 +22,7 @@ public class Room {
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
+
     public void enter() {
         System.out.println("You are now inside " + this.name + " on the ground floor.");
     }
