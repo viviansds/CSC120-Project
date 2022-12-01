@@ -14,7 +14,7 @@ public class Character {
         return "You are in front of"+room_name;// add lock status later
     }
     public void unlock(String door){
-        if (Room.getlocked_door());
+        // if (Room.getlocked_door());
     }
 
 }
