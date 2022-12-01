@@ -25,9 +25,9 @@ public class Livingroom extends Room{
         System.out.println("You found a key." );
     }
     public void CheckFireplace(){
-        System.out.println("After a long search in the ashes, you found a half burnt letter with some interesting note on it.");
+        System.out.println("After a long search in the ashes, you found a half burnt letter with the following messsage: ");
         System.out.println(" __    __    __    __ ");
-        System.out.println(" __|  |__   |__|  |__|");
+        System.out.println(" __|  |__   |__|  |__ ");
     }   
 
 }
