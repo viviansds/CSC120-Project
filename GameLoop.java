@@ -1,6 +1,29 @@
 import java.util.Scanner;
 public class GameLoop {
     public static void main(String[] arguments) {
+        // This is a "flag" to let us know when the loop should end
+        boolean stillPlaying = true;
+        // We'll use this to get input from the user.
+        Scanner userInput = new Scanner(System.in);
+
+        // Storage for user's responses
+        String userResponse = "";
+
+        // This could be replaced with a more interesting opening
+        System.out.println("****************************");
+        System.out.println("WELCOME TO THE ESCAPE ROOM");
+        System.out.println("****************************");
+
+        //Background Story
+        System.out.println("Today is December 21th.");
+        System.out.println("You are a secret FBI agent and your last assigned mission of this year is to appear in court and identify the suspect at noon today.");
+        System.out.println("This morning, you are walking down the street, and out of nowhere, the people from the criminal gang kidnap you.");
+        System.out.println("After a long while, you woke up in a bath tub around 10:30 and found yourself locked inside a bathroom of an unknown house.");
+        System.out.println("All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time. Good Luck!");
+        
+        // Instructions are sometimes helpful
+        System.out.println("Ready to Start, Enter 'START' or Enter 'HELP' to see a list of useful commands");
+
         //Bathroom
         Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
         System.out.println(Bathroom);
