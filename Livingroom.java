@@ -8,7 +8,7 @@ public class Livingroom extends Room{
    
     public Livingroom(String name, boolean locked_door, String key_type){
         super(name, locked_door, key_type);
-        entry_code="123";
+        entry_code="YHD358";
         exit_code="3595";
         
     }
