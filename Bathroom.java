@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import java.util.Scanner;
+// import java.util.Scanner;
 public class Bathroom extends Room {
 
     public boolean finding_key;

@@ -43,5 +43,12 @@ public class Livingroom extends Room{
         LitFireplace();
         System.out.println("The light bulb is broken, but you still tried to turn on the floor lamp. Surprise! The switch is actually for turning on the fireplace. The fire place starts to lit up.");
     }
+    public void TurnOnTV(){
+        System.out.println("You turned on the TV. It was playing your favorite show on Netflix. Do you want to keep watching it? (yes/switch a channel/stop watching and turn off tv)");
+    }
 
+    public void TurnOffTV(){
+        System.out.println("You turn off the lamp");
+
+    }
 }

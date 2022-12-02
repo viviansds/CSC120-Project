@@ -4,6 +4,7 @@ public class Room {
     protected String name;
     protected boolean locked_door;
     protected String key_type;
+    protected String entry_code;
     String[] items= {"air"};
 
     public Room(String name, boolean locked_door, String key_type){
@@ -24,9 +25,18 @@ public class Room {
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
-
-    public void enter() {
-        System.out.println("You are now inside " + this.name + " on the ground floor.");
+    public void unlock(String unlock_method){
+        if (locked_door){
+            int i = 2;
+            while( i > 0 ){
+                if(unlock_method.equals(entry_code)){
+                    locked_door=false;
+                }else{
+                    System.out.println("Failed to Unlock, you have "+i+"more tries");
+                }
+            }
+            //game end here
+        }
     }
     
     public static void main(String[] args) {
