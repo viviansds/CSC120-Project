@@ -3,20 +3,20 @@ public class Livingroom extends Room{
 
     /* Subclass attributes */
     String[] items= {"Sofa", "Carpet", "Fire place", "Television", "Floor_lamp with a broken light bulb"};
-    protected int entry_code;
-    protected int exit_code;
+    protected String entry_code;
+    protected String exit_code;
    
     public Livingroom(String name, boolean locked_door, String key_type){
         super(name, locked_door, key_type);
-        entry_code=123;
-        exit_code=3595;
+        entry_code="123";
+        exit_code="3595";
         
     }
-    public int getentry_code() {
+    public String getentry_code() {
         return entry_code;
     }
-    public void exit(int code) {
-        if (code == exit_code){
+    public void exit(String code) {
+        if (code.equals(exit_code)){
             System.out.println("Congradulations! You escaped the room!");
         }
     }
@@ -48,7 +48,7 @@ public class Livingroom extends Room{
     }
 
     public void TurnOffTV(){
-        System.out.println("You turn off the lamp");
+        System.out.println("You turned off the lamp");
 
     }
 }

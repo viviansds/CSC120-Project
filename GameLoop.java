@@ -1,14 +1,20 @@
 import java.util.Scanner;
 public class GameLoop {
     public static void main(String[] arguments) {
-        // This is a "flag" to let us know when the loop should end
+        // This is a "flag" to let us know when the game loop should end
         boolean stillPlaying = true;
+        //This is a "flag" to let us know when the person want to stop searching
+        boolean stillSearching=true;
+    
         // We'll use this to get input from the user.
         Scanner userInput = new Scanner(System.in);
 
         // Storage for user's responses
         String userResponse = "";
-
+        userResponse = userInput.nextLine();
+        // Instructions are sometimes helpful
+        System.out.println("Ready to Start, Enter 'START' or Enter 'HELP' to see a list of useful commands");
+        
         // This could be replaced with a more interesting opening
         System.out.println("****************************");
         System.out.println("WELCOME TO THE ESCAPE ROOM");
@@ -21,8 +27,7 @@ public class GameLoop {
         System.out.println("After a long while, you woke up in a bath tub around 10:30 and found yourself locked inside a bathroom of an unknown house.");
         System.out.println("All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time. Good Luck!");
         
-        // Instructions are sometimes helpful
-        System.out.println("Ready to Start, Enter 'START' or Enter 'HELP' to see a list of useful commands");
+        
 
         //Bathroom
         Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
@@ -94,6 +99,43 @@ public class GameLoop {
                 };
             }
         }
-        
+        do {
+        //Living Room
+        Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
+        System.out.println(livingroom);
+        if (userResponse.equals("Search the room")){
+            System.out.print("What do you want check in the room?");
+            if(stillSearching){
+                try(Scanner check = new Scanner(System.in)){
+                    String object = check.nextLine();
+                    if(object.equals("Sofa")){
+                        livingroom.CheckSofa();
+                    }else if(object.equals("Carpet")){
+                        livingroom.CheckCarpet();
+                    }else if(object.equals("Fire place")){
+                        livingroom.CheckFireplace();
+                    }else if(object.equals("Nothing")){
+                        stillSearching=false;
+                    }
+                }
+            }else{
+                System.out.println("Do you want to go to the next room now?");
+            }
+        }else if(userResponse.equals("unlock the door")){
+            System.out.println("Input the correct passcode");
+            try(Scanner scanner1 = new Scanner(System.in)){
+                String passcode = scanner1.nextLine();
+                livingroom.exit(passcode);
+            }
+            
+        }else{
+            System.out.println("You are stuck in the room, cannot unlock to go outside");stillPlaying=false;
+            }
+           
+        }while(stillPlaying);
+        //close scanner
+        userInput.close();
+
+        //Explain why exit the loop
     }
 }
