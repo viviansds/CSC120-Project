@@ -29,7 +29,7 @@ public class GameLoop {
         
         //Initialize rooms and characters
         Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
-        Bedroom bedroom = new Bedroom("Bedroom", true, "key");
+        Bedroom bedroom = new Bedroom("Bedroom", true, "key","key");
         Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
         Character person = new Character("You");
 
@@ -53,6 +53,7 @@ public class GameLoop {
                         if (decision_key.equals("yes")){
                             String key = "key";
                             bedroom.unlock(key);
+                            // System.out.println(bedroom.getEntry_method());
                             System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room)");
                             String exit_decision = check.nextLine();
                             if(exit_decision.equals("exit the room")){

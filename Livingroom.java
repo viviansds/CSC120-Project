@@ -3,17 +3,17 @@ public class Livingroom extends Room{
 
     /* Subclass attributes */
     String[] items= {"Sofa", "Carpet", "Fire place", "Television", "Floor_lamp with a broken light bulb"};
-    protected String entry_code;
+    protected String entry_method;
     protected String exit_code;
    
     public Livingroom(String name, boolean locked_door, String key_type){
         super(name, locked_door, key_type);
-        entry_code="YHD358";
+        entry_method="YHD358";
         exit_code="3595";
         
     }
-    public String getentry_code() {
-        return entry_code;
+    public String getEntry_method() {
+        return entry_method;
     }
     public void exit(String code) {
         if (code.equals(exit_code)){
