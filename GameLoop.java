@@ -27,11 +27,12 @@ public class GameLoop {
         System.out.println("After a long while, you woke up in a bath tub around 10:30 and found yourself locked inside a bathroom of an unknown house.");
         System.out.println("All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time. Good Luck!");
         
-        //create all the rooms
+        //Initialize rooms and characters
         Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
         Bedroom bedroom = new Bedroom("Bedroom", true, "key");
         Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
-        
+        Character person = new Character("You");
+
         //Bathroom
         System.out.println(Bathroom);
         Bathroom.examine();
@@ -55,7 +56,9 @@ public class GameLoop {
                             System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room)");
                             String exit_decision = check.nextLine();
                             if(exit_decision.equals("exit the room")){
-                                
+                                person.enter(1);
+                            }else if (exit_decision.equals("check other things in the room")){
+                                break;
                             }
                         }else if(decision_key.equals("no")){
                             System.out.println("You stuck in the room and missed the time.");
