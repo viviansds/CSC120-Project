@@ -4,7 +4,8 @@ public class Character {
     public String name;
     public int position;//track the person's location, 0=bathroom,1=bedroom, 2= living room, 3=outside
     boolean switch_channel=false;
-    ArrayList<String> Collection = new ArrayList<String>();
+    boolean haveBag = false;
+    ArrayList<String> Bag = new ArrayList<String>();
 
     public Character(String name){
         this.name = name;
@@ -29,5 +30,18 @@ public class Character {
         return switch_channel;
     }
 
+    public void pickup(String item){
+        if (haveBag){
+        System.out.println("You just pick up a" + item);
+        Bag.add(item);
+        }else{
+            System.out.println("You can't have this item because you don't have a bag.");
+        }
+    }
+
+    public boolean haveBag(){
+        haveBag=true;
+        return haveBag;
+    }
 }
 

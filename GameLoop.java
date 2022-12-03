@@ -28,16 +28,17 @@ public class GameLoop {
         System.out.println("All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time. Good Luck!");
         
         //Initialize rooms and characters
-        Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
+        Bathroom Bathroom= new Bathroom("Bathroom",false,"key");
         Bedroom bedroom = new Bedroom("Bedroom", true, "key","key");
         Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
         Character person = new Character("You");
 
+        do{
         //Bathroom
         System.out.println(Bathroom);
         Bathroom.examine();
         System.out.print("What do you what to check in the room?");
-        for (int i = 0; i < 8; i++) {
+        while (stillSearching) {
             Scanner check = new Scanner(System.in);
                 System.out.println("Which object do you wanna check?");
                 String object = check.nextLine();
@@ -45,6 +46,25 @@ public class GameLoop {
                     Bathroom.Toilet();
                 }else if (object.equals("Bathtub")){
                     Bathroom.Bathtub();
+                }else if (object.equals("Mirror")){
+                    Bathroom.Mirror();
+                    Scanner status = new Scanner(System.in);
+                        System.out.println("You remember fog can make some stain more obvious. Are you going to try that? (yes/no)");
+                        String decision_mirror = status.nextLine();
+                    if(decision_mirror.equals("yes")){
+                        System.out.println("Words appeared on the mirror: Don't lose track of time. Find the key.");
+                    }
+                }else if (object.equals( "Closet")){
+                    Bathroom.Closet();
+                    Scanner status = new Scanner(System.in);
+                    System.out.println("Do you want to carry it? (yes/no)");
+                    String decision_bag = status.nextLine();
+                    if (decision_bag.equals("yes")){
+                        System.out.println("You have the bag and are able to pick up things.");
+                        person.haveBag = true;
+                    }else{
+                        System.out.println("Okay.");
+                    }
                 }else if (object.equals("Shelves")){
                     Bathroom.Shelves();
                     Scanner status = new Scanner(System.in);
@@ -53,32 +73,24 @@ public class GameLoop {
                         if (decision_key.equals("yes")){
                             String key = "key";
                             bedroom.unlock(key);
-                            // System.out.println(bedroom.getEntry_method());
                             System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room)");
                             String exit_decision = check.nextLine();
                             if(exit_decision.equals("exit the room")){
                                 person.enter(1);
+                                stillSearching = false;
                             }else if (exit_decision.equals("check other things in the room")){
-                                break;
+                                stillSearching = true;
                             }
                         }else if(decision_key.equals("no")){
-                            System.out.println("You stuck in the room and missed the time.");
-                            //game over
-                        }
-                    
-                }else if (object.equals("Mirror")){
-                    Bathroom.Mirror();
-                    try(Scanner status = new Scanner(System.in)){
-                        System.out.println("You remember fog can make some stain more obvious. Are you going to try that? (yes/no)");
-                        String decision_mirror = status.nextLine();
-                    if(decision_mirror.equals("yes")){
-                        System.out.println("Words appeared on the mirror: Don't lose track of time. Find the key.");
-                    }
-                    }
-                }else if (object.equals( "Closet")){
-                    Bathroom.Closet();
-                    }
+                            System.out.println("You are stuck in the room, cannot unlock to go outside. Mission failed.");
+                            stillPlaying=false;
+                            System.exit(0);
+                        }   
                 }
+        }
+    }while(stillPlaying);
+    
+
 
         //bedroom section
         System.out.println(bedroom);
@@ -144,7 +156,8 @@ public class GameLoop {
             }
             
         }else{
-            System.out.println("You are stuck in the room, cannot unlock to go outside");stillPlaying=false;
+            System.out.println("You are stuck in the room, cannot unlock to go outside");
+            stillPlaying=false;
             }
            
         }while(stillPlaying);

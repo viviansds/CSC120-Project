@@ -3,17 +3,16 @@ import java.util.Arrays;
 public class Bedroom extends Room{
     public boolean get_code;
     String[] items= {"Bed", "Closet", "Drawers", "Curtain", "Lamp"};
-    protected String entry_method;
+    private String entry_method;
    
     public Bedroom(String name, boolean locked_door, String key_type, String entry_method){
         super(name, locked_door, key_type);
-        entry_method = "key";
+        this.entry_method = "key";
 
     }
 
     public String getEntry_method(){
-        System.out.println("I am here");
-        return entry_method;
+        return this.entry_method;
     }
 
     // public void exit(String code) {

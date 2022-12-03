@@ -28,7 +28,7 @@ public class Bathroom extends Room {
     }
 
     public void Closet(){
-        System.out.println("There is an empty bag in the closet. Do you want to carry it? (yes/no)");
+        System.out.println("There is an empty bag in the closet.");
     }
 
     public void examine(){

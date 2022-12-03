@@ -25,15 +25,15 @@ public class Room {
 
     public String getEntry_method(){
         // System.out.println("I am here");
-        return entry_method;
+        return this.entry_method;
     }
 
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
     public void unlock(String unlock_method){
-        System.out.println(unlock_method);
-        getEntry_method();
+        // System.out.println(unlock_method);
+        // System.out.println(getEntry_method());
         if (locked_door){
             int i = 2;
             while( i > 0 ){
