@@ -29,52 +29,55 @@ public class GameLoop {
         
         //Initialize rooms and characters
         Bathroom Bathroom= new Bathroom("Bathroom",false,"key");
-        Bedroom bedroom = new Bedroom("Bedroom", true, "key","key");
+        Bedroom bedroom = new Bedroom("Bedroom", true, "passcode","key");
         Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
         Character person = new Character("You");
 
-        do{
+       // do{
         //Bathroom
         System.out.println(Bathroom);
         Bathroom.examine();
         System.out.print("What do you what to check in the room?");
         while (stillSearching) {
-            Scanner check = new Scanner(System.in);
+            Scanner Bathroom_scanner = new Scanner(System.in);
                 System.out.println("Which object do you wanna check?");
-                String object = check.nextLine();
+                String object = Bathroom_scanner.nextLine();
                 if (object.equals("Toilet")){
                     Bathroom.Toilet();
                 }else if (object.equals("Bathtub")){
                     Bathroom.Bathtub();
                 }else if (object.equals("Mirror")){
                     Bathroom.Mirror();
-                    Scanner status = new Scanner(System.in);
+                    Scanner Mirror_Scanner = new Scanner(System.in);
                         System.out.println("You remember fog can make some stain more obvious. Are you going to try that? (yes/no)");
-                        String decision_mirror = status.nextLine();
+                        String decision_mirror = Mirror_Scanner.nextLine();
                     if(decision_mirror.equals("yes")){
                         System.out.println("Words appeared on the mirror: Don't lose track of time. Find the key.");
                     }
+                    // Mirror_Scanner.close();
+
                 }else if (object.equals( "Closet")){
                     Bathroom.Closet();
-                    Scanner status = new Scanner(System.in);
+                    Scanner Closet_Scanner = new Scanner(System.in);
                     System.out.println("Do you want to carry it? (yes/no)");
-                    String decision_bag = status.nextLine();
+                    String decision_bag = Closet_Scanner.nextLine();
                     if (decision_bag.equals("yes")){
                         System.out.println("You have the bag and are able to pick up things.");
                         person.haveBag = true;
                     }else{
                         System.out.println("Okay.");
                     }
+                    // Closet_Scanner.close();
                 }else if (object.equals("Shelves")){
                     Bathroom.Shelves();
-                    Scanner status = new Scanner(System.in);
+                     Scanner Shelves_Scanner = new Scanner(System.in);
                         System.out.println("Do you want to use them or not? (yes/no)");
-                        String decision_key = status.nextLine();
+                        String decision_key = Shelves_Scanner.nextLine();
                         if (decision_key.equals("yes")){
                             String key = "key";
                             bedroom.unlock(key);
                             System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room)");
-                            String exit_decision = check.nextLine();
+                            String exit_decision = Bathroom_scanner.nextLine();
                             if(exit_decision.equals("exit the room")){
                                 person.enter(1);
                                 stillSearching = false;
@@ -85,10 +88,11 @@ public class GameLoop {
                             System.out.println("You are stuck in the room, cannot unlock to go outside. Mission failed.");
                             stillPlaying=false;
                             System.exit(0);
-                        }   
+                        }  
+                        // Shelves_Scanner.close(); 
                 }
         }
-    }while(stillPlaying);
+    
     
 
 
@@ -96,10 +100,13 @@ public class GameLoop {
         System.out.println(bedroom);
         bedroom.examine();
         System.out.println("You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six inputs. ");
-        for (int i = 0; i < 5; i++) {
-            try(Scanner check = new Scanner(System.in)){
-                System.out.println("Which object do you wanna check? or you can input PASSWORD if you want to try the passcode");
-                String object = check.nextLine();
+        stillSearching = true;
+        int count = 3;
+        while (stillSearching && count > 0) {
+                Scanner Bedroom_Scanner = new Scanner(System.in);
+                System.out.println("Which object do you wanna check?");
+                System.out.println("Type 'unlock' if you are ready to try the passcode!");
+                String object = Bedroom_Scanner.nextLine();
                 if (object.equals("Bed")){
                     bedroom.Bed();
                 }else if (object.equals("Closet")){
@@ -109,25 +116,47 @@ public class GameLoop {
                 }else if (object.equals("Curtains")){
                     bedroom.Curtains();
                 }else if (object.equals( "Lamp")){
-                    try(Scanner status = new Scanner(System.in)){
+                    Scanner Lamp_Scanner = new Scanner(System.in);
                         System.out.println("Input On/Off to change the status of the lamp");
-                        String OnOff = status.nextLine();
+                        String OnOff = Lamp_Scanner.nextLine();
                         if (OnOff.equals("On")){
                             bedroom.turn_on_lamp();
                         }else if (OnOff.equals("Off")){
                             bedroom.turn_off_lamp();
                         }
-                    };    
-                }else if (object.equals("PASSWORD")){
-                System.out.println("Input the passcode?");
-                try(Scanner password = new Scanner(System.in)){
-                String passcode = password.nextLine();
-                livingroom.unlock(passcode);
+                }else if (object.equals("unlock")){
+                    // for (int i = 0; i < 3; i++){
+                    System.out.println("Input the passcode");
+                    Scanner password = new Scanner(System.in);
+                    String passcode = password.nextLine();
+                    livingroom.unlock(passcode);
+                    if(livingroom.unlock(passcode)){
+                        System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room) ");
+                        String exit_decision = Bedroom_Scanner.nextLine();
+                    if(exit_decision.equals("exit the room")){
+                        person.enter(2);
+                        stillSearching = false;
+                    }else if (exit_decision.equals("check other things in the room")){
+                        stillSearching = true;
+                    }
+                    
+                
+                }else{
+                    System.out.println("Unlock failed!");
+                    stillSearching = true;
+                    count = count -1;
+                    System.out.println("You have " + count + " more tries!");
+                }
+               
+
+                
             }
                 }
-            }
-        }
-        do {
+            System.out.println("You run out of tries! You are locked in the room!");
+            System.exit(0);
+            
+        
+        
         //Living Room
         System.out.println(livingroom);
         if (userResponse.equals("Search the room")){
@@ -160,7 +189,7 @@ public class GameLoop {
             stillPlaying=false;
             }
            
-        }while(stillPlaying);
+        //}while(stillPlaying);
         //close scanner
         userInput.close();
 

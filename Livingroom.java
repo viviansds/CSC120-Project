@@ -6,8 +6,8 @@ public class Livingroom extends Room{
     protected String entry_method;
     protected String exit_code;
    
-    public Livingroom(String name, boolean locked_door, String key_type){
-        super(name, locked_door, key_type);
+    public Livingroom(String name, boolean locked_door, String exit_type){
+        super(name, locked_door, exit_type);
         entry_method="YHD358";
         exit_code="3595";
         

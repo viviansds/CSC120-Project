@@ -3,14 +3,14 @@ import java.util.Arrays;
 public class Room {
     protected String name;
     protected boolean locked_door;
-    protected String key_type;
+    protected String exit_type;
     protected String entry_method;
     String[] items= {"air"};
 
-    public Room(String name, boolean locked_door, String key_type){
+    public Room(String name, boolean locked_door, String exit_type){
         this.name = name;
         this.locked_door = locked_door;
-        this.key_type= key_type;
+        this.exit_type= exit_type;
         this.entry_method = "abc";
     }
     /*
@@ -20,7 +20,7 @@ public class Room {
         return this.locked_door;
     }
     public String toString() {
-        return "This "+ this.name + " needs a " + this.key_type + ".";
+        return "This "+ this.name + " needs a " + this.exit_type + " to exit.";
     }
 
     public String getEntry_method(){
@@ -31,24 +31,33 @@ public class Room {
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
-    public void unlock(String unlock_method){
+    public boolean unlock(String unlock_method){
         // System.out.println(unlock_method);
         // System.out.println(getEntry_method());
+        boolean unlock = false;
         if (locked_door){
-            int i = 2;
-            while( i > 0 ){
+            // int i = 2;
+            // while( i > 0 ){
                 if(unlock_method.equals(getEntry_method())){
                     locked_door=false;
                     System.out.println("Great job! You unlocked the door.");
-                    i=0;
+                    // i=0;
+                    unlock = true;
                 }else{
-                    System.out.println("Failed to Unlock, you have "+i+" more tries");
-                    i -= 1;
-                }
+                    // System.out.println("Failed to Unlock, you have "+i+" more tries");
+                    // i -= 1;
+                    // if (i == 0){
+                    //     System.exit(0);
+                    // }else{
+                    //     continue;
+                    // }
             }
             //game end here
         }
-    }
+        
+    //}
+    return unlock;
+}
     
     public static void main(String[] args) {
     Room demo= new Room("Bedroom",true,"key");

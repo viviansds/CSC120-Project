@@ -5,8 +5,8 @@ public class Bathroom extends Room {
     public boolean finding_key;
     String[] items= {"Toilet", "Bathtub", "Shelves", "Mirror", "Closet"};
 
-    public Bathroom(String name, boolean locked_door, String key_type){
-        super(name, locked_door, key_type);
+    public Bathroom(String name, boolean locked_door, String exit_type){
+        super(name, locked_door, exit_type);
 
     }
 

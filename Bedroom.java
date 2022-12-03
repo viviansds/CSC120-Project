@@ -4,10 +4,12 @@ public class Bedroom extends Room{
     public boolean get_code;
     String[] items= {"Bed", "Closet", "Drawers", "Curtain", "Lamp"};
     private String entry_method;
+    
    
-    public Bedroom(String name, boolean locked_door, String key_type, String entry_method){
-        super(name, locked_door, key_type);
+    public Bedroom(String name, boolean locked_door, String exit_type, String entry_method){
+        super(name, locked_door, exit_type);
         this.entry_method = "key";
+        
 
     }
 
