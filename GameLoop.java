@@ -11,7 +11,7 @@ public class GameLoop {
 
         // Storage for user's responses
         String userResponse = "";
-        userResponse = userInput.nextLine();
+        // userResponse = userInput.nextLine();
         // Instructions are sometimes helpful
         System.out.println("Ready to Start, Enter 'START' or Enter 'HELP' to see a list of useful commands");
         
@@ -27,51 +27,56 @@ public class GameLoop {
         System.out.println("After a long while, you woke up in a bath tub around 10:30 and found yourself locked inside a bathroom of an unknown house.");
         System.out.println("All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time. Good Luck!");
         
+        //create all the rooms
+        Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
+        Bedroom bedroom = new Bedroom("Bedroom", true, "key");
+        Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
         
-
         //Bathroom
-        // Bathroom Bathroom= new Bathroom("Bathroom",true,"key");
-        // System.out.println(Bathroom);
-        // Bathroom.examine();
-        // System.out.print("What do you what to check in the room?");
-        // for (int i = 0; i < 8; i++) {
-        //     try(Scanner check = new Scanner(System.in)){
-        //         System.out.println("Which object do you wanna check?");
-        //         String object = check.nextLine();
-        //         if (object.equals("Toilet")){
-        //             Bathroom.Toilet();
-        //         }else if (object.equals("Bathtub")){
-        //             Bathroom.Bathtub();
-        //         }else if (object.equals("Shelves")){
-        //             Bathroom.Shelves();
-        //             try(Scanner status = new Scanner(System.in)){
-        //                 System.out.println("Do you want to use them or not? (yes/no)");
-        //                 String decision_key = status.nextLine();
-        //                 if (decision_key.equals("yes")){
-        //                     System.out.println("You unlock the door. Do you want to exit the bathroom or keep checking other things in the Bathroom?");
-        //                     // scanner check whether go to next room or keep checking bathroom
-        //                 }else if(decision_key.equals("no")){
-        //                     System.out.println("You stuck in the room and missed the time.");
-        //                     //game over
-        //                 }
-        //             }
-        //         }else if (object.equals("Mirror")){
-        //             Bathroom.Mirror();
-        //             try(Scanner status = new Scanner(System.in)){
-        //                 System.out.println("You remember fog can make some stain more obvious. Are you going to try that? (yes/no)");
-        //                 String decision_mirror = status.nextLine();
-        //             if(decision_mirror.equals("yes")){
-        //                 System.out.println("Words appeared on the mirror: Don't lose track of time. Find the key.");
-        //             }
-        //             }
-        //         }else if (object.equals( "Closet")){
-        //             Bathroom.Closet();
-        //             };    
-        //         };
-        // }
+        System.out.println(Bathroom);
+        Bathroom.examine();
+        System.out.print("What do you what to check in the room?");
+        for (int i = 0; i < 8; i++) {
+            Scanner check = new Scanner(System.in);
+                System.out.println("Which object do you wanna check?");
+                String object = check.nextLine();
+                if (object.equals("Toilet")){
+                    Bathroom.Toilet();
+                }else if (object.equals("Bathtub")){
+                    Bathroom.Bathtub();
+                }else if (object.equals("Shelves")){
+                    Bathroom.Shelves();
+                    Scanner status = new Scanner(System.in);
+                        System.out.println("Do you want to use them or not? (yes/no)");
+                        String decision_key = status.nextLine();
+                        if (decision_key.equals("yes")){
+                            String key = "key";
+                            bedroom.unlock(key);
+                            System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room)");
+                            String exit_decision = check.nextLine();
+                            if(exit_decision.equals("exit the room")){
+                                
+                            }
+                        }else if(decision_key.equals("no")){
+                            System.out.println("You stuck in the room and missed the time.");
+                            //game over
+                        }
+                    
+                }else if (object.equals("Mirror")){
+                    Bathroom.Mirror();
+                    try(Scanner status = new Scanner(System.in)){
+                        System.out.println("You remember fog can make some stain more obvious. Are you going to try that? (yes/no)");
+                        String decision_mirror = status.nextLine();
+                    if(decision_mirror.equals("yes")){
+                        System.out.println("Words appeared on the mirror: Don't lose track of time. Find the key.");
+                    }
+                    }
+                }else if (object.equals( "Closet")){
+                    Bathroom.Closet();
+                    }
+                }
 
         //bedroom section
-        Bedroom bedroom = new Bedroom("Bedroom", true, "key");
         System.out.println(bedroom);
         bedroom.examine();
         System.out.println("You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six inputs. ");
@@ -101,14 +106,13 @@ public class GameLoop {
                 System.out.println("Input the passcode?");
                 try(Scanner password = new Scanner(System.in)){
                 String passcode = password.nextLine();
-                bedroom.exit(passcode);
+                livingroom.unlock(passcode);
             }
                 }
             }
         }
         do {
         //Living Room
-        Livingroom livingroom = new Livingroom("Living Room",true,"entry_code");
         System.out.println(livingroom);
         if (userResponse.equals("Search the room")){
             System.out.print("What do you want check in the room?");

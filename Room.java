@@ -31,8 +31,10 @@ public class Room {
             while( i > 0 ){
                 if(unlock_method.equals(entry_code)){
                     locked_door=false;
+                    System.out.println("Great job! You unlocked the door.");
                 }else{
                     System.out.println("Failed to Unlock, you have "+i+"more tries");
+                    i -= 1;
                 }
             }
             //game end here

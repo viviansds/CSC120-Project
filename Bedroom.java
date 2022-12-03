@@ -8,8 +8,8 @@ public class Bedroom extends Room{
    
     public Bedroom(String name, boolean locked_door, String key_type){
         super(name, locked_door, key_type);
-        entry_key = "kjsdl";
-       exit_code="YHD358";
+        entry_key = "key";
+        // exit_code="YHD358";
 
     }
 
@@ -17,11 +17,11 @@ public class Bedroom extends Room{
         return entry_key;
     }
 
-    public void exit(String code) {
-        if (code.equals(exit_code)){
-            System.out.println("Correct Password!");
-        }
-    }
+    // public void exit(String code) {
+    //     if (code.equals(exit_code)){
+    //         System.out.println("Correct Password!");
+    //     }
+    // }
 
     public void Bed(){
         System.out.println("Nothing find here!");
