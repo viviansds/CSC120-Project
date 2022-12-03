@@ -8,12 +8,12 @@ public class Livingroom extends Room{
    
     public Livingroom(String name, boolean locked_door, String exit_type){
         super(name, locked_door, exit_type);
-        entry_method="YHD358";
-        exit_code="3595";
+        this.entry_method="YHD358";
+        this.exit_code="3595";
         
     }
     public String getEntry_method() {
-        return entry_method;
+        return this.entry_method;
     }
     public void exit(String code) {
         if (code.equals(exit_code)){

@@ -34,6 +34,7 @@ public class Character {
         if (haveBag){
         System.out.println("You just pick up a" + item);
         Bag.add(item);
+        System.out.println(Bag);
         }else{
             System.out.println("You can't have this item because you don't have a bag.");
         }

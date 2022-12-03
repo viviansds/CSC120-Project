@@ -37,7 +37,7 @@ public class GameLoop {
         //Bathroom
         System.out.println(Bathroom);
         Bathroom.examine();
-        System.out.print("What do you what to check in the room?");
+        System.out.println("What do you what to check in the room?");
         while (stillSearching) {
             Scanner Bathroom_scanner = new Scanner(System.in);
                 System.out.println("Which object do you wanna check?");
@@ -129,65 +129,118 @@ public class GameLoop {
                     System.out.println("Input the passcode");
                     Scanner password = new Scanner(System.in);
                     String passcode = password.nextLine();
-                    livingroom.unlock(passcode);
+                    // livingroom.unlock(passcode);
                     if(livingroom.unlock(passcode)){
                         System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room) ");
                         String exit_decision = Bedroom_Scanner.nextLine();
-                    if(exit_decision.equals("exit the room")){
-                        person.enter(2);
-                        stillSearching = false;
-                    }else if (exit_decision.equals("check other things in the room")){
-                        stillSearching = true;
-                    }
-                    
-                
-                }else{
+                        if(exit_decision.equals("exit the room")){
+                            person.enter(2);
+                            stillSearching = false;
+                        }else if (exit_decision.equals("check other things in the room")){
+                            stillSearching = true;
+                        }
+                    }else{
                     System.out.println("Unlock failed!");
                     stillSearching = true;
                     count = count -1;
                     System.out.println("You have " + count + " more tries!");
+                    }
                 }
-               
-
-                
-            }
-                }
-            System.out.println("You run out of tries! You are locked in the room!");
+        }if(count==0){
+            System.out.println("You ran out of tries! You are locked in the room!");
+            stillPlaying=false;
             System.exit(0);
+        }
             
         
         
         //Living Room
         System.out.println(livingroom);
-        if (userResponse.equals("Search the room")){
-            System.out.print("What do you want check in the room?");
-            if(stillSearching){
-                try(Scanner check = new Scanner(System.in)){
-                    String object = check.nextLine();
-                    if(object.equals("Sofa")){
-                        livingroom.CheckSofa();
-                    }else if(object.equals("Carpet")){
-                        livingroom.CheckCarpet();
-                    }else if(object.equals("Fire place")){
-                        livingroom.CheckFireplace();
-                    }else if(object.equals("Nothing")){
-                        stillSearching=false;
+        livingroom.examine();
+        System.out.println("You saw there is a lock on the door. You need to input a 4 digits code.");
+        stillSearching = true;
+        int j=3;
+        while (stillSearching && j>0){
+                System.out.print("What do you want check in the room?");
+                if(stillSearching){
+                    Scanner LR_scanner = new Scanner(System.in);
+                    System.out.println("Type 'unlock' if you are ready to try the passcode!");
+                    String object = LR_scanner.nextLine();
+                        if(object.equals("Sofa")){
+                            livingroom.CheckSofa();
+                            Scanner Sofa_Scanner = new Scanner(System.in);
+                            System.out.println("Do you want to pick it up? (yes/no)");
+                            String decision_candle = Sofa_Scanner.nextLine();
+                            if (decision_candle.equals("yes")){
+                                person.pickup("candle");
+                                System.out.println();
+                                person.haveBag = true;
+                            }else{
+                                System.out.println("Okay.");
+                            }
+                        }else if(object.equals("Carpet")){
+                            livingroom.CheckCarpet();
+                            System.out.println("Do you want to pick it up? (yes/no)");
+                            Scanner Carpet_Scanner = new Scanner(System.in);
+                            String decision_keychains = Carpet_Scanner.nextLine();
+                            if (decision_keychains.equals("yes")){
+                                person.pickup("key chains");
+                            }else{
+                                System.out.println("Okay.");
+                            }
+                        }else if(object.equals("Fire place")){
+                            livingroom.CheckFireplace();
+                        }else if(object.equals("Floorlamp")){
+                            livingroom.Floorlamp();
+                        }else if(object.equals("TV")){
+                            livingroom.TurnOnTV(); 
+                            Scanner TV_Scanner = new Scanner(System.in);
+                            String decision_TV = TV_Scanner.nextLine();
+                            if (decision_TV.equals("yes")){
+                                System.out.println("You wasted too long binge watching TV, Mission Failed!");
+                                System.exit(0);
+                                stillPlaying=false;
+                            }else if(decision_TV.equals("switch a channel")){
+                                System.out.println("Spy talks...");
+                            }else if(decision_TV.equals("stop watching and turn off tv")){
+                                stillSearching=true;
+                            }
+                         }else if(object.equals("unlock")){
+                            System.out.println("Input the passcode");
+                            Scanner password = new Scanner(System.in);
+                            String passcode = password.nextLine();
+                            livingroom.unlock(passcode);
+                            if(livingroom.unlock(passcode)){
+                                System.out.println("Congradulation, you escaped the house!");
+                                System.out.println("In front of the house, there is a Porsche car waiting for you.");
+                                System.out.println("Which car key is the right one?");
+                                Scanner Car_Scanner = new Scanner(System.in);
+                                String decision_car = Car_Scanner.nextLine();
+                                boolean car_key=false;
+                                if (decision_car.equals("E")){
+                                    car_key=true;
+                                }else{
+                                    car_key=false;
+                                }
+                                if(car_key){
+                                    System.out.println("You used the car key to drive to the court, successfully identified the suspect. Mission Complete! Thank you for your hard work!");
+                                    System.exit(0);
+                                    stillPlaying=false;
+                                }else{
+                                    System.out.println("Great job on escaping the house! Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
+                            }
+                            }else{
+                            System.out.println("Unlock failed!");
+                            stillSearching = true;
+                            count = count -1;
+                            System.out.println("You have " + count + " more tries!");
+                            }
+                        }
                     }
-                }
-            }else{
-                System.out.println("Do you want to go to the next room now?");
-            }
-        }else if(userResponse.equals("unlock the door")){
-            System.out.println("Input the correct passcode");
-            try(Scanner scanner1 = new Scanner(System.in)){
-                String passcode = scanner1.nextLine();
-                livingroom.exit(passcode);
-            }
-            
-        }else{
-            System.out.println("You are stuck in the room, cannot unlock to go outside");
-            stillPlaying=false;
-            }
+
+        }
+        System.out.println("You run out of tries! You are locked in the room!");
+        System.exit(0);
            
         //}while(stillPlaying);
         //close scanner
