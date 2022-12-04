@@ -128,7 +128,7 @@ public class GameLoop {
                 System.out.println("You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six digits. ");
                 stillSearching = true;
                 Scanner gotoBathroom_scanner = new Scanner(System.in);
-                System.out.println("You have unlocked the bathroom! Type 'Bathroom' if you want to go back to bathroom.");
+                System.out.println("You have unlocked the bedroom! Type 'Bathroom' if you want to go back to bathroom. Hit enter to continue!");
                 String bathroom_name1 = gotoBathroom_scanner.nextLine();
                 if(bathroom_name1.equals("Bathroom")){
                     person.enter(0);
@@ -192,7 +192,7 @@ public class GameLoop {
                  //Living Room
                 stillSearching = true;
                 Scanner Room_scanner = new Scanner(System.in);
-                System.out.println("You have unlocked bathroom! Type 'Bathroom' if you want to go back to one of the rooms.");
+                System.out.println("You have unlocked bathroom and bedroom! Type 'Bathroom' or 'Bedroom' if you want to go back to one of the rooms. Hit enter to continue!");
                 String Room_name = Room_scanner.nextLine();
                 if(Room_name.equals("Bathroom")){
                     person.enter(0);
