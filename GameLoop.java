@@ -49,7 +49,7 @@ public class GameLoop {
                 }else if (object.equals("Mirror")){
                     Bathroom.Mirror();
                     Scanner Mirror_Scanner = new Scanner(System.in);
-                        System.out.println("You remember fog can make some stain more obvious. Are you going to try that? (yes/no)");
+                        System.out.println("You remembered fog can make some stain more obvious. Are you going to try that? (yes/no)");
                         String decision_mirror = Mirror_Scanner.nextLine();
                     if(decision_mirror.equals("yes")){
                         System.out.println("Words appeared on the mirror: Don't lose track of time. Find the key.");
@@ -62,7 +62,7 @@ public class GameLoop {
                     System.out.println("Do you want to carry it? (yes/no)");
                     String decision_bag = Closet_Scanner.nextLine();
                     if (decision_bag.equals("yes")){
-                        System.out.println("You have the bag and are able to pick up things.");
+                        System.out.println("You got the bag and were able to pick up things.");
                         person.haveBag = true;
                     }else{
                         System.out.println("Okay.");
@@ -70,30 +70,35 @@ public class GameLoop {
                     // Closet_Scanner.close();
                 }else if (object.equals("Shelves")){
                     Bathroom.Shelves();
-                     Scanner Shelves_Scanner = new Scanner(System.in);
-                        System.out.println("Do you want to use them or not? (yes/no)");
-                        String decision_key = Shelves_Scanner.nextLine();
-                        if (decision_key.equals("yes")){
-                            String key = "key";
-                            bedroom.unlock(key);
-                            System.out.println("You unlock the door. What do you want to do next? (exit the room / check other things in the room)");
-                            String exit_decision = Bathroom_scanner.nextLine();
-                            if(exit_decision.equals("exit the room")){
-                                person.enter(1);
-                                stillSearching = false;
-                            }else if (exit_decision.equals("check other things in the room")){
-                                stillSearching = true;
-                            }
-                        }else if(decision_key.equals("no")){
-                            System.out.println("You are stuck in the room, cannot unlock to go outside. Mission failed.");
-                            stillPlaying=false;
-                            System.exit(0);
-                        }  
+                    Scanner shovel_Scanner = new Scanner(System.in);
+                        System.out.println("Do you want to use the shovel to dig the plant and see what will happen? (yes/no)");
+                        String decision_shovel = shovel_Scanner.nextLine();
+                        if (decision_shovel.equals("yes")){
+                            System.out.println("God job! You found a key in the plant.");
+                            Scanner Shelves_Scanner = new Scanner(System.in);
+                                System.out.println("Do you want to use them or not? (yes/no)");
+                                String decision_key = Shelves_Scanner.nextLine();
+                                if (decision_key.equals("yes")){
+                                    String key = "key";
+                                    bedroom.unlock(key);
+                                    System.out.println("You unlocked the door. What do you want to do next? (exit the room / check other things in the room)");
+                                    String exit_decision = Bathroom_scanner.nextLine();
+                                    if(exit_decision.equals("exit the room")){
+                                        person.enter(1);
+                                        stillSearching = false;
+                                    }else if (exit_decision.equals("check other things in the room")){
+                                        stillSearching = true;
+                                    }
+                                } else if(decision_key.equals("no")){
+                                    System.out.println("You were stuck in the room and couldn't unlock to go outside. Mission failed.");
+                                    stillPlaying=false;
+                                    System.exit(0);
+                                }  
                         // Shelves_Scanner.close(); 
+                        }
                 }
-        }
     
-    
+            }
 
 
         //bedroom section

@@ -15,20 +15,20 @@ public class Bathroom extends Room {
     }
 
     public void Bathtub(){
-        System.out.println("The bathtub is full of red water with nothing else.");
+        System.out.println("The bathtub was full of red water with nothing else.");
     }
 
     public void Shelves(){
-        System.out.println("There is a plant, a mini shovel, and a towel.");
+        System.out.println("You found a plant, a mini shovel, and a towel.");
     }
 
     public void Mirror(){
-        System.out.println("The mirror is not very clean, you can vaguely see some marks on it.");
+        System.out.println("The mirror was not very clean, you could vaguely see some marks on it.");
         System.out.println();
     }
 
     public void Closet(){
-        System.out.println("There is an empty bag in the closet.");
+        System.out.println("You found an empty bag in the closet.");
     }
 
     public void examine(){
