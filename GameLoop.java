@@ -159,7 +159,7 @@ public class GameLoop {
         livingroom.examine();
         System.out.println("You saw there is a lock on the door. You need to input a 4 digits code.");
         stillSearching = true;
-        int j=3;
+        int j=3;//counter for the max amount of unlock attempts
         while (stillSearching && j>0){
                 System.out.print("What do you want check in the room?");
                 if(stillSearching){
@@ -190,8 +190,16 @@ public class GameLoop {
                             }
                         }else if(object.equals("Fire place")){
                             livingroom.CheckFireplace();
-                        }else if(object.equals("Floorlamp")){
+                        }else if(object.equals("Floor lamp")){
                             livingroom.Floorlamp();
+                            System.out.println("What do you want to do next? (burn the candle/shut off the fireplace)");
+                            Scanner Floorlamp_Scanner = new Scanner(System.in);
+                            String decision_floorlamp = Floorlamp_Scanner.nextLine();
+                            if (decision_floorlamp.equals("burn the candle")){
+                                person.BurnCandle();
+                            }else if (decision_floorlamp.equals("shut off the fireplace")){
+                                livingroom.ShutOffFireplace();
+                            }
                         }else if(object.equals("TV")){
                             livingroom.TurnOnTV(); 
                             Scanner TV_Scanner = new Scanner(System.in);
@@ -211,33 +219,37 @@ public class GameLoop {
                             Scanner password = new Scanner(System.in);
                             String passcode = password.nextLine();
                             livingroom.exitHouse(passcode);
-                            System.out.println(livingroom.exitHouse(passcode));
                             if(!livingroom.getlocked_house()){
                                 System.out.println("In front of the house, there is a Porsche car waiting for you.");
-                                System.out.println("Which car key is the right one?");
-                                Scanner Car_Scanner = new Scanner(System.in);
-                                String decision_car = Car_Scanner.nextLine();
-                                boolean car_key=false;
-                                if (decision_car.equals("E")){
-                                    car_key=true;
+                                if (person.haveItem("key chains")){
+                                    System.out.println("Which car key is the right one?");
+                                    Scanner Car_Scanner = new Scanner(System.in);
+                                    String decision_car = Car_Scanner.nextLine();
+                                    boolean car_key=false;
+                                    if (decision_car.equals("E")){
+                                        car_key=true;
+                                    }else{
+                                        car_key=false;
+                                    }
+                                    if(car_key){
+                                        System.out.println("You used the car key to drive to the court, successfully identified the suspect. Mission Complete! Thank you for your hard work!");
+                                        System.exit(0);
+                                        stillPlaying=false;
+                                    }else{
+                                        System.out.println("Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
+                                        stillPlaying=false;
+                                        stillSearching=false;
+                                        System.exit(0);
+                                    }
                                 }else{
-                                    car_key=false;
+                                    System.out.println("You don't have a key to drive the car.");
                                 }
-                                if(car_key){
-                                    System.out.println("You used the car key to drive to the court, successfully identified the suspect. Mission Complete! Thank you for your hard work!");
-                                    System.exit(0);
-                                    stillPlaying=false;
-                                }else{
-                                    System.out.println("Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
-                                    stillPlaying=false;
-                                    stillSearching=false;
-                                    System.exit(0);
-                            }
+                               
                             }else{
                             System.out.println("Unlock failed!");
                             stillSearching = true;
-                            count = count -1;
-                            System.out.println("You have " + count + " more tries!");
+                            j -=1;
+                            System.out.println("You have " + j + " more tries!");
                             }
                         }
                     }

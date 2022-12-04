@@ -44,5 +44,25 @@ public class Character {
         haveBag=true;
         return haveBag;
     }
+    
+    public void BurnCandle(){
+        if(haveItem("candle")){
+            Bag.remove("candle");
+            System.out.println("Bag has"+Bag);
+            System.out.println("As Candle start burning, it started to melt and a note came out of the wax. The message wrote:");
+            System.out.println("I'm the beginning of the end, the end of every place. I'm the beginning of eternity, the end of time and space. What am I?. If you know what I am, use me to find the right key to drive the car.");
+        }else{
+            System.out.println("You don't have a candle in your bag yet");
+        }
+        
+    }
+    public boolean haveItem(String item){
+        boolean haveItem=false;
+        if (Bag.contains(item)){
+            haveItem=true;
+        }else{
+            haveItem=false;
+        }return haveItem;
+    }
 }
 

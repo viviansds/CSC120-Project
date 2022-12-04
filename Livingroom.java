@@ -2,7 +2,7 @@ import java.util.Arrays;
 public class Livingroom extends Room{
 
     /* Subclass attributes */
-    String[] items= {"L-shaped Sofa", "Carpet", "Fire place", "Television", "Floor_lamp with a broken light bulb"};
+    String[] items= {"Sofa", "Carpet", "Fire place", "TV", "Floor lamp"};
     protected String entry_method;
     protected String exit_code;
     protected boolean locked_house;//locked front door
@@ -43,14 +43,13 @@ public class Livingroom extends Room{
         System.out.println(" __    __    __    __ ");
         System.out.println(" __|  |__   |__|  |__ ");
     }   
-    public void LitFireplace(){
-        //if candle used near the fireplace
-        System.out.println("As Candle get close to the fireplace, it started to melt and a note came out of the wax. The message wrote:");
-        System.out.println("I'm the beginning of the end, the end of every place. I'm the beginning of eternity, the end of time and space. What am I?. If you know what I am, use me to find the right key to drive the car.");
-    }
+    
     public void Floorlamp(){
-        LitFireplace();
         System.out.println("The light bulb is broken, but you still tried to turn on the floor lamp. Surprise! The switch is actually for turning on the fireplace. The fire place starts to lit up.");
+        
+    }
+    public void ShutOffFireplace(){
+        System.out.println("You shut off the fire place.");
     }
     public void TurnOnTV(){
         System.out.println("You turned on the TV. It was playing your favorite show on Netflix. Do you want to keep watching it? (yes/switch a channel/stop watching and turn off tv)");
