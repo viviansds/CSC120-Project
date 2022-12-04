@@ -39,6 +39,9 @@ public class Room {
                     System.out.println("Great job! You unlocked the door.");
                     unlock = true;
                 }
+        }else{
+            System.out.println("The door is already unlocked");
+            unlock = true;
         }return unlock;
     }
 
