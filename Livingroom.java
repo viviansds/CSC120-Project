@@ -2,29 +2,38 @@ import java.util.Arrays;
 public class Livingroom extends Room{
 
     /* Subclass attributes */
-    String[] items= {"Sofa", "Carpet", "Fire place", "Television", "Floor_lamp with a broken light bulb"};
+    String[] items= {"L-shaped Sofa", "Carpet", "Fire place", "Television", "Floor_lamp with a broken light bulb"};
     protected String entry_method;
     protected String exit_code;
+    protected boolean locked_house;//locked front door
    
     public Livingroom(String name, boolean locked_door, String exit_type){
         super(name, locked_door, exit_type);
         this.entry_method="YHD358";
         this.exit_code="3595";
+        this.locked_house=true;
         
     }
     public String getEntry_method() {
         return this.entry_method;
     }
-    public void exit(String code) {
-        if (code.equals(exit_code)){
-            System.out.println("Congradulations! You escaped the room!");
-        }
+    public boolean getlocked_house() {
+        return this.locked_house;
+    }
+    public boolean exitHouse(String code) {
+        if (locked_house){
+            if (code.equals(exit_code)){
+                System.out.println("Congradulations! You escaped the house!");
+                locked_house = false;
+            }
+        } 
+        return locked_house;
     }
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
     public void CheckSofa(){
-        System.out.println("Under the sofa cushion, you found a candle. As you take a closer look, there seems to be something stuck inside the candle wax.");
+        System.out.println("The sofa is L-shaped. Under the sofa cushion, you found a candle. As you take a closer look, there seems to be something stuck inside the candle wax.");
     }
     public void CheckCarpet(){
         System.out.println("You found a Key Chain with a set of keys each labeling a letter from A-F." );
@@ -48,7 +57,7 @@ public class Livingroom extends Room{
     }
 
     public void TurnOffTV(){
-        System.out.println("You turned off the lamp");
-
+        System.out.println("You turned off the TV.");
     }
 }
+

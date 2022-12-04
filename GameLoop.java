@@ -203,15 +203,16 @@ public class GameLoop {
                             }else if(decision_TV.equals("switch a channel")){
                                 System.out.println("Spy talks...");
                             }else if(decision_TV.equals("stop watching and turn off tv")){
+                                livingroom.TurnOffTV();
                                 stillSearching=true;
                             }
                          }else if(object.equals("unlock")){
                             System.out.println("Input the passcode");
                             Scanner password = new Scanner(System.in);
                             String passcode = password.nextLine();
-                            livingroom.unlock(passcode);
-                            if(livingroom.unlock(passcode)){
-                                System.out.println("Congradulation, you escaped the house!");
+                            livingroom.exitHouse(passcode);
+                            System.out.println(livingroom.exitHouse(passcode));
+                            if(!livingroom.getlocked_house()){
                                 System.out.println("In front of the house, there is a Porsche car waiting for you.");
                                 System.out.println("Which car key is the right one?");
                                 Scanner Car_Scanner = new Scanner(System.in);
@@ -227,7 +228,10 @@ public class GameLoop {
                                     System.exit(0);
                                     stillPlaying=false;
                                 }else{
-                                    System.out.println("Great job on escaping the house! Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
+                                    System.out.println("Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
+                                    stillPlaying=false;
+                                    stillSearching=false;
+                                    System.exit(0);
                             }
                             }else{
                             System.out.println("Unlock failed!");

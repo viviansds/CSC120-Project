@@ -32,33 +32,18 @@ public class Room {
         System.out.println(Arrays.toString(items));
     }
     public boolean unlock(String unlock_method){
-        // System.out.println(unlock_method);
-        // System.out.println(getEntry_method());
         boolean unlock = false;
         if (locked_door){
-            // int i = 2;
-            // while( i > 0 ){
                 if(unlock_method.equals(getEntry_method())){
                     locked_door=false;
                     System.out.println("Great job! You unlocked the door.");
-                    // i=0;
                     unlock = true;
-                }else{
-                    // System.out.println("Failed to Unlock, you have "+i+" more tries");
-                    // i -= 1;
-                    // if (i == 0){
-                    //     System.exit(0);
-                    // }else{
-                    //     continue;
-                    // }
-            }
-            //game end here
-        }
-        
-    //}
-    return unlock;
-}
+                }
+        }return unlock;
+    }
+
     
+
     public static void main(String[] args) {
     Room demo= new Room("Bedroom",true,"key");
     System.out.println(demo);

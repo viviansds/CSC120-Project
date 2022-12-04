@@ -17,12 +17,6 @@ public class Bedroom extends Room{
         return this.entry_method;
     }
 
-    // public void exit(String code) {
-    //     if (code.equals(exit_code)){
-    //         System.out.println("Correct Password!");
-    //     }
-    // }
-
     public void Bed(){
         System.out.println("Nothing find here!");
 
