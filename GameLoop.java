@@ -36,16 +36,26 @@ public class GameLoop {
        // do{
         //Bathroom
         System.out.println(Bathroom);
+        String key = "key";
         Bathroom.examine();
         System.out.println("What do you what to check in the room?");
         while (stillSearching) {
             Scanner Bathroom_scanner = new Scanner(System.in);
                 System.out.println("Which object do you wanna check?");
+                System.out.println("Type 'unlock' if you are ready to try to use the key!");
                 String object = Bathroom_scanner.nextLine();
                 if (object.equals("Toilet")){
                     Bathroom.Toilet();
                 }else if (object.equals("Bathtub")){
                     Bathroom.Bathtub();
+                }else if (object.equals("unlock")){
+                    if(person.haveKey){
+                        System.out.println("You unlocked the door.");
+                        person.enter(1);
+                        stillSearching = false;
+                    }else{
+                        System.out.println("The bathroom is locked. Try to find a key inside this room.");
+                    }
                 }else if (object.equals("Mirror")){
                     Bathroom.Mirror();
                     Scanner Mirror_Scanner = new Scanner(System.in);
@@ -63,7 +73,7 @@ public class GameLoop {
                     String decision_bag = Closet_Scanner.nextLine();
                     if (decision_bag.equals("yes")){
                         System.out.println("You got the bag and were able to pick up things.");
-                        person.haveBag = true;
+                        person.setHaveBag();
                     }else{
                         System.out.println("Okay.");
                     }
@@ -74,12 +84,12 @@ public class GameLoop {
                         System.out.println("Do you want to use the shovel to dig the plant and see what will happen? (yes/no)");
                         String decision_shovel = shovel_Scanner.nextLine();
                         if (decision_shovel.equals("yes")){
+                            person.setHaveKey();
                             System.out.println("God job! You found a key in the plant.");
                             Scanner Shelves_Scanner = new Scanner(System.in);
                                 System.out.println("Do you want to use them or not? (yes/no)");
                                 String decision_key = Shelves_Scanner.nextLine();
                                 if (decision_key.equals("yes")){
-                                    String key = "key";
                                     bedroom.unlock(key);
                                     System.out.println("You unlocked the door. What do you want to do next? (exit the room / check other things in the room)");
                                     String exit_decision = Bathroom_scanner.nextLine();

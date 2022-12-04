@@ -5,6 +5,7 @@ public class Character {
     public int position;//track the person's location, 0=bathroom,1=bedroom, 2= living room, 3=outside
     boolean switch_channel=false;
     boolean haveBag = false;
+    boolean haveKey = false;
     ArrayList<String> Bag = new ArrayList<String>();
 
     public Character(String name){
@@ -18,9 +19,13 @@ public class Character {
    
     public void enter(int room_num) {
         if (position!= room_num){
-            System.out.println("You are now inside");
+            if (room_num==1){
+                System.out.println("You are now inside the bedroom");
+            }else if(room_num==2){
+                System.out.println("You are now inside the living room");
+            }
         }else{
-            System.out.println("You are already inside this room.");
+            System.out.println("You are already inside the room.");
         }
     }
     public boolean SwitchChannel(String response){
@@ -40,9 +45,14 @@ public class Character {
         }
     }
 
-    public boolean haveBag(){
+    public boolean setHaveBag(){
         haveBag=true;
         return haveBag;
+    }
+
+    public boolean setHaveKey(){
+        haveKey = true;
+        return haveKey;
     }
     
     public void BurnCandle(){
