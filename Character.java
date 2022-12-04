@@ -19,9 +19,14 @@ public class Character {
    
     public void enter(int room_num) {
         if (position!= room_num){
-            if (room_num==1){
+            if (room_num==0){
+                position = 0;
+                System.out.println("You are now inside the bathroom.");
+            }else if (room_num==1){
+                position = 1;
                 System.out.println("You are now inside the bedroom");
             }else if(room_num==2){
+                position = 2;
                 System.out.println("You are now inside the living room");
             }
         }else{
@@ -44,6 +49,7 @@ public class Character {
             System.out.println("You can't have this item because you don't have a bag.");
         }
     }
+
 
     public boolean setHaveBag(){
         haveBag=true;

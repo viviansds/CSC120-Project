@@ -4,6 +4,7 @@ public class Bedroom extends Room{
     public boolean get_code;
     String[] items= {"Bed", "Closet", "Drawers", "Curtain", "Lamp"};
     private String entry_method;
+    public boolean lamp_status = false;
     
    
     public Bedroom(String name, boolean locked_door, String exit_type, String entry_method){
@@ -35,11 +36,21 @@ public class Bedroom extends Room{
     }
 
     public void turn_on_lamp(){
+        if (!lamp_status){
         System.out.println("You turned on the lamp. As the room got brighter, you saw a note sticked inside the lamp saying that 'From letter to number, from small to big.'");
+        lamp_status = true;
+        }else{
+            System.out.println("The lamp is already on!");
+        }
     }
 
     public void turn_off_lamp(){
+        if (lamp_status){
         System.out.println("You turned off the lamp");
+        lamp_status = false;
+        }else{
+            System.out.println("The lamp is already off");
+        }
 
     }
     public void examine(){

@@ -2,12 +2,16 @@ import java.util.Arrays;
 // import java.util.Scanner;
 public class Bathroom extends Room {
 
-    public boolean finding_key;
+    public boolean Bag_in_closet = true;
     String[] items= {"Toilet", "Bathtub", "Shelves", "Mirror", "Closet"};
 
     public Bathroom(String name, boolean locked_door, String exit_type){
         super(name, locked_door, exit_type);
 
+    }
+    public boolean setBag_in_closet(){
+        Bag_in_closet=false;
+        return Bag_in_closet;
     }
 
     public void Toilet(){
@@ -28,7 +32,12 @@ public class Bathroom extends Room {
     }
 
     public void Closet(){
-        System.out.println("You found an empty bag in the closet.");
+        if(Bag_in_closet){
+            System.out.println("You found an empty bag in the closet.");
+        } else {
+            System.out.println("Nothing is inside the closet.");
+        }
+       
     }
 
     public void examine(){
