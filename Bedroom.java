@@ -18,7 +18,7 @@ public class Bedroom extends Room{
     }
 
     public void Bed(){
-        System.out.println("Nothing find here!");
+        System.out.println("Nothing found here!");
 
     }
 
@@ -27,27 +27,24 @@ public class Bedroom extends Room{
     }
 
     public void Drawers(){
-        System.out.println("A letter shows up here with letters YHD bolded.");
+        System.out.println("A letter shows up here with letters 'Y' 'H' 'D' bolded.");
     }
 
     public void Curtains(){
-        System.out.println("You open the curtain and you see two red numbers 5 8 on the window. ");
+        System.out.println("You opened the curtain and you saw two red numbers '5' '8' written on the window. ");
     }
 
     public void turn_on_lamp(){
-        System.out.println("You turn on the lamp. As the room gets brighter, you saw a note stick inside the lamp saying that 'from letter to number, from small to big.'");
+        System.out.println("You turned on the lamp. As the room got brighter, you saw a note sticked inside the lamp saying that 'From letter to number, from small to big.'");
     }
 
     public void turn_off_lamp(){
-        System.out.println("You turn off the lamp");
+        System.out.println("You turned off the lamp");
 
     }
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
-
-
-    
 
 }
 

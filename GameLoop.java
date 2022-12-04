@@ -99,7 +99,7 @@ public class GameLoop {
         //bedroom section
         System.out.println(bedroom);
         bedroom.examine();
-        System.out.println("You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six inputs. ");
+        System.out.println("You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six digits. ");
         stillSearching = true;
         int count = 3;
         while (stillSearching && count > 0) {
@@ -113,7 +113,7 @@ public class GameLoop {
                     bedroom.Closet();
                 }else if (object.equals("Drawers")){
                     bedroom.Drawers();
-                }else if (object.equals("Curtains")){
+                }else if (object.equals("Curtain")){
                     bedroom.Curtains();
                 }else if (object.equals( "Lamp")){
                     Scanner Lamp_Scanner = new Scanner(System.in);
