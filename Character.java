@@ -3,7 +3,6 @@ import java.util.ArrayList; // import the ArrayList class
 public class Character {
     public String name;
     public int position;//track the person's location, 0=bathroom,1=bedroom, 2= living room, 3=outside
-    boolean switch_channel=false;
     boolean haveBag = false;
     boolean haveKey = false;
     ArrayList<String> Bag = new ArrayList<String>();
@@ -32,12 +31,6 @@ public class Character {
         }else{
             System.out.println("You are already inside the room.");
         }
-    }
-    public boolean SwitchChannel(String response){
-        if (response.equals("yes")){
-            switch_channel=true;
-        }
-        return switch_channel;
     }
 
     public void pickup(String item){
