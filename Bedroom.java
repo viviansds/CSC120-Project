@@ -49,6 +49,10 @@ public class Bedroom extends Room{
         System.out.println(Arrays.toString(items));
     }
 
+    //override getEntry_method
+    public String getEntry_method(){
+        return this.entry_method;
+    }
 }
 
 

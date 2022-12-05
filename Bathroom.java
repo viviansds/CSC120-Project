@@ -13,10 +13,6 @@ public class Bathroom extends Room {
         Bag_in_closet=false;
         return Bag_in_closet;
     }
-    //override getEntry_method
-    public String getEntry_method(){
-        return this.entry_method;
-    }
     
     public void Toilet(){
         System.out.println("Nothing found in Toilet.");
