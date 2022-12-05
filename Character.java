@@ -12,10 +12,6 @@ public class Character {
         this.position = 0;
     }
 
-    public String GoToDoor(String room_name) {
-        return "You are in front of"+room_name;// add lock status later
-    }
-   
     public void enter(int room_num) {
         if (position!= room_num){
             if (room_num==0){

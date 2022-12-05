@@ -24,7 +24,6 @@ public class Room {
     }
 
     public String getEntry_method(){
-        // System.out.println("I am here");
         return this.entry_method;
     }
 
@@ -44,8 +43,6 @@ public class Room {
             unlock = true;
         }return unlock;
     }
-
-    
 
     public static void main(String[] args) {
     Room demo= new Room("Bedroom",true,"key");
