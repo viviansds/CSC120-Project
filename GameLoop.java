@@ -126,6 +126,8 @@ public class GameLoop {
                                     // Shelves_Scanner.close(); 
                                     }
                                 }
+                            }else{
+                                System.out.println("Invalid Object, please select one inside the room.");
                             }
                     }
                 }
@@ -194,6 +196,8 @@ public class GameLoop {
                                     count = count -1;
                                     System.out.println("You have " + count + " more tries!");
                                     }
+                                }else{
+                                    System.out.println("Invalid Object, please select one inside the room.");
                                 }
 
                         }if(count==0){//Ran out of unlock attempts
@@ -320,6 +324,8 @@ public class GameLoop {
                                             attempt -=1;
                                             System.out.println("You have " + attempt + " more tries!");
                                             }
+                                        }else{
+                                            System.out.println("Invalid Object, please select one inside the room.");
                                         }
                                 }
                         }//Ran out of unlock attempts

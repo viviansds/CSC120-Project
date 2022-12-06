@@ -46,6 +46,7 @@ public class Bedroom extends Room{
 
     }
     public void examine(){
+        System.out.print("This bedroom contains");
         System.out.println(Arrays.toString(items));
     }
 

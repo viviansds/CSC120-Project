@@ -28,6 +28,7 @@ public class Livingroom extends Room{
         return locked_house;
     }
     public void examine(){
+        System.out.print("This living room contains");
         System.out.println(Arrays.toString(items));
     }
     
