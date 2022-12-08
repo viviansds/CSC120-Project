@@ -156,6 +156,7 @@ public class GameLoop {
                             
                             }else{
                                 System.out.println("->Invalid Object, please select one inside the room.");
+                                System.out.println();
                             }
                     }
                 }
@@ -241,6 +242,7 @@ public class GameLoop {
 
                                 }else{
                                     System.out.println("->Invalid Object, please select one inside the room.");
+                                    System.out.println();
                                 }
 
                         }if(count==0){//Ran out of unlock attempts
@@ -394,6 +396,7 @@ public class GameLoop {
         
                                         }else{
                                             System.out.println("Invalid Object, please select one inside the room.");
+                                            System.out.println();
                                         }
                                 }
                         }//Ran out of unlock attempts
