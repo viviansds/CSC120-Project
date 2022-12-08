@@ -16,26 +16,26 @@ public class Character {
         if (position!= room_num){
             if (room_num==0){
                 position = 0;
-                System.out.println("You are now inside the bathroom.");
+                System.out.println("->You are now inside the bathroom.");
             }else if (room_num==1){
                 position = 1;
-                System.out.println("You are now inside the bedroom");
+                System.out.println("->You are now inside the bedroom");
             }else if(room_num==2){
                 position = 2;
-                System.out.println("You are now inside the living room");
+                System.out.println("->You are now inside the living room");
             }
         }else{
-            System.out.println("You are already inside the room.");
+            System.out.println("->You are already inside the room.");
         }
     }
 
     public void pickup(String item){
         if (haveBag){
-        System.out.println("You just pick up a" + item);
+        System.out.println("->You just pick up the " + item);
         Bag.add(item);
         System.out.println(Bag);
         }else{
-            System.out.println("You can't have this item because you don't have a bag.");
+            System.out.println("->You can't have this item because you don't have a bag.");
         }
     }
 

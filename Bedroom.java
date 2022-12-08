@@ -12,36 +12,36 @@ public class Bedroom extends Room{
 
 
     public void Bed(){
-        System.out.println("Nothing found here!");
+        System.out.println("->Nothing found here!");
     }
 
     public void Closet(){
-        System.out.println("There are three hangers in the closet. ");
+        System.out.println("->There are three hangers in the closet. ");
     }
 
     public void Drawers(){
-        System.out.println("A letter shows up here with letters 'Y' 'H' 'D' bolded.");
+        System.out.println("->You found a sticky note that reads 'You can Do tHis'.");
     }
 
     public void Curtains(){
-        System.out.println("You opened the curtain and you saw two red numbers '5' '8' written on the window. ");
+        System.out.println("->You opened the curtain and you saw two red numbers '5' '8' written on the window. ");
     }
 
     public void turn_on_lamp(){
         if (!lamp_status){
-        System.out.println("You turned on the lamp. As the room got brighter, you saw a note sticked inside the lamp saying that 'From letter to number, from small to big.'");
+        System.out.println("->You turned on the lamp. As the room got brighter, you saw a note sticked inside the lamp saying that 'From letter to number, from small to big.'");
         lamp_status = true;
         }else{
-            System.out.println("The lamp is already on!");
+            System.out.println("->The lamp is already on!");
         }
     }
 
     public void turn_off_lamp(){
         if (lamp_status){
-        System.out.println("You turned off the lamp");
+        System.out.println("->You turned off the lamp");
         lamp_status = false;
         }else{
-            System.out.println("The lamp is already off");
+            System.out.println("->The lamp is already off");
         }
 
     }

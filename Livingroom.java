@@ -9,7 +9,7 @@ public class Livingroom extends Room{
    
     public Livingroom(String name, boolean locked_door, String exit_type){
         super(name, locked_door, exit_type);
-        this.entry_method="YHD358";
+        this.entry_method="YDH358";
         this.exit_code="3595";
         this.locked_house=true;
         

@@ -15,27 +15,27 @@ public class Bathroom extends Room {
     }
     
     public void Toilet(){
-        System.out.println("Nothing found in Toilet.");
+        System.out.println("->Nothing found in Toilet.");
     }
 
     public void Bathtub(){
-        System.out.println("The bathtub was full of red water with nothing else.");
+        System.out.println("->The bathtub was full of red water with nothing else.");
     }
 
     public void Shelves(){
-        System.out.println("You found a plant, a mini shovel, and a towel.");
+        System.out.println("->You found a plant, a mini shovel, and a towel.");
     }
 
     public void Mirror(){
-        System.out.println("The mirror was not very clean, you could vaguely see some marks on it.");
+        System.out.println("->The mirror was not very clean, you could vaguely see some marks on it.");
         System.out.println();
     }
 
     public void Closet(){
         if(Bag_in_closet){
-            System.out.println("You found an empty bag in the closet.");
+            System.out.println("->You found an empty bag in the closet.");
         } else {
-            System.out.println("Nothing is inside the closet.");
+            System.out.println("->Nothing is inside the closet.");
         }
        
     }
