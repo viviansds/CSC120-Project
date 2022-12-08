@@ -16,14 +16,17 @@ public class Bathroom extends Room {
     
     public void Toilet(){
         System.out.println("->Nothing found in Toilet.");
+        System.out.println();
     }
 
     public void Bathtub(){
         System.out.println("->The bathtub was full of red water with nothing else.");
+        System.out.println();
     }
 
     public void Shelves(){
         System.out.println("->You found a plant, a mini shovel, and a towel.");
+        System.out.println();
     }
 
     public void Mirror(){
