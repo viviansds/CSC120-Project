@@ -36,9 +36,9 @@ yes
 
 **Command**  
 >Which object do you wanna check?
-This bedroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]
-Type 'unlock' if you are ready to try to use the key!
-Type 'help' if you need additional tip to proceed.
+This bedroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]  
+Type 'unlock' if you are ready to try to use the key!  
+Type 'help' if you need additional tip to proceed.  
 Type 'quit' if you want to end the game.
 
 **User Input**   
@@ -223,8 +223,8 @@ Fire Place
 
 **Command**  
 >After a long search in the ashes, you found a half burnt letter with the following messsage:   
- \__   \__     \__    \__   
- \__|  |__ |__|\___
+ \__  &nbsp;&nbsp;&nbsp; \__   &nbsp;&nbsp; \__  &nbsp; &nbsp;    \__  
+ \__| &nbsp; &nbsp;|__ &nbsp; |__|  &nbsp; \|\_\_
 
 Which object do you wanna check?  
 This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
