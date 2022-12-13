@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/*
+ * parent class Room
+ */
 public class Room {
     protected String name;
     protected boolean locked_door;
@@ -7,29 +10,52 @@ public class Room {
     protected String entry_method;
     String[] items= {"air"};
 
+    /*
+     * constructor of the room
+     */
     public Room(String name, boolean locked_door, String exit_type){
         this.name = name;
         this.locked_door = locked_door;
         this.exit_type= exit_type;
         this.entry_method = "abc";
     }
+
     /*
      * Accessor for getlocked_door
+     * @return this.locked_door lock status of the door
      */
     public boolean getlocked_door() {
         return this.locked_door;
     }
+
+    /*
+     * create the sentnce showing what is needed to exit
+     * @return string sentence
+     */
     public String toString() {
         return "This "+ this.name + " needs a " + this.exit_type + " to exit.";
     }
 
+    /*
+     * show what entry method is needed
+     * @return this.entry_method
+     */
     public String getEntry_method(){
         return this.entry_method;
     }
 
+    /*
+     * print the items contained in the room
+     */
     public void examine(){
         System.out.println(Arrays.toString(items));
     }
+
+    /*
+     * unlock the door
+     * @param unlock_method 
+     * @return unlock
+     */
     public boolean unlock(String unlock_method){
         boolean unlock = false;
         if (locked_door){

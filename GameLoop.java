@@ -1,12 +1,20 @@
 import java.util.Scanner;
 
+/*
+ * game loop connect all the subclasses together
+ * print guideline words and take user input
+ */ 
 public class GameLoop {
-    /* Print a statement whenver there is invalid Input */
+    /*
+     * Print a statement whenver there is invalid Input
+     */
     public static void InvalidInput() {
         System.out.println("->Sorry, Invalid input.");
     }
     
-    /*Print background story*/
+    /* 
+     * Print background story
+     */
     public static void background() {
         System.out.println(
             "--------------------------------------------------------------------------------------------------------------------------");
@@ -25,7 +33,10 @@ public class GameLoop {
     
     }
     
-    /*Print welcome message */
+    /*
+     * Print welcome message
+     * @param room  the room the character is currently in
+     */
     public static void welcomeMessage(String room){
         if (room.equals("bathroom")){
             System.out.println("=======================================================");
@@ -46,12 +57,16 @@ public class GameLoop {
         
     }
     
-    /*Print exit message when unlocked the next room */
+    /*
+     * Print exit message when unlocked the next room 
+     */
     public static void exitPrompt(){
         System.out.println("->You unlocked the door. What do you want to do next? (exit the room / check other things in the room)");
     }
 
-    /* Print Spy story */
+    /* 
+     * Print Spy story 
+     */
     public static void spyTalk(){
         System.out.println(
             "---------------------------------------------------------------------------------");
@@ -109,20 +124,22 @@ public class GameLoop {
             while (stillPlaying) {
                 // Bathroom
                 while (person.position == 0) {
+                    // when position equals 0, the character is in Bathroom
                     System.out.println(Bathroom);
                     String key = "key";
                     while (stillSearching) {
+                        // stillSearching keep the user in this loop
                         welcomeMessage("bathroom");
                         Bathroom.examine();
                         System.out.println();
-
+                        // no limit for user input's form
                         String object = user_input.nextLine().toLowerCase();
-
+                        // see if the user want to go to the rooms that are opened already
                         if (object.equals("go back")){
                             System.out.println("There is no room before the bathroom");
                             break;
                         }
-                        // Check Objects in the room
+                        // Check Objects in the room depend on user's input
                         switch (object){
                         case "toilet":
                             Bathroom.Toilet();
@@ -135,7 +152,7 @@ public class GameLoop {
                         case "mirror":
                             Bathroom.Mirror();
                             System.out.println(
-                                    "->You remembered fog can make some stain more obvious. Are you going to try that? (yes/no)");
+                                    "->You remembered fog can make some stain more obvious. Do you want to fog the room by turning on hot water? (yes/no)");
                             String decision_mirror = user_input.nextLine();
                             if (decision_mirror.equals("yes")) {
                                 System.out.println(
@@ -162,7 +179,6 @@ public class GameLoop {
                                 }
                             }
                             break;
-
                         case "shelves":
                             if (person.haveKey) {
                                 Bathroom.Shelves();
@@ -215,7 +231,6 @@ public class GameLoop {
                                 System.out.println();
                             }
                             break;
-
                         case "help":
                             System.out.println(
                                     "->Type a name of the item in the room to start searching. For example, type 'closet'.");
@@ -233,6 +248,8 @@ public class GameLoop {
                 }
                 // bedroom section
                 while (person.position == 1) {
+                    // when position equals 1, the character is in bedroom
+                    System.out.println("=======================================================");
                     System.out.println(
                             "You have unlocked the bedroom! Type 'Bathroom' if you want to go back to bathroom. Hit enter to continue!");
                     String bathroom_name1 = user_input.nextLine();
@@ -246,17 +263,17 @@ public class GameLoop {
                         stillSearching = true;
                         int count = 3;
                         while (stillSearching && count > 0) {
+                            //stillSearching keep the user in this loop. Set the maximum times the user can try the code.
                             welcomeMessage("bedroom");
                             bedroom.examine();
                             System.out.println();
+                            // no limit for the form of user's input
                             String object = user_input.nextLine().toLowerCase();
-
-                            if (object.equals("go back")){
+                            if (object.equals("go back")){//see if the user want to go back to the opened rooms
                                 break;
                             }
-                            // Check Objects in the room
+                            // Check Objects in the room depend on user's input
                             switch(object){
-                            
                             case "bed":
                                 bedroom.Bed();
                                 System.out.println();
@@ -322,9 +339,6 @@ public class GameLoop {
                                 InvalidInput();
                                 System.out.println();
                             }
-                            
-                            
-
                         }
                         if (count == 0) {// Ran out of unlock attempts
                             System.out.println("->You ran out of tries! You are locked in the room!");
@@ -335,8 +349,10 @@ public class GameLoop {
 
                 // Living Room
                 while (person.position == 2) {
+                    // when position equals 2, the character is in Living
                     stillSearching = true;
                     // Scanner twoRooms_scanner = new Scanner(System.in);
+                    
                     System.out.println(
                             "You have unlocked bathroom and bedroom! Type 'Bathroom' or 'Bedroom' if you want to go back to one of the rooms. Hit enter to continue!");
                     String Room_name = user_input.nextLine();
@@ -348,6 +364,7 @@ public class GameLoop {
                         person.enter(1);
 
                     } else {// Begin searching in the living room
+                        System.out.println("=======================================================");
                         System.out.println("You saw there is a lock on the door. You need to input a 4 digits code.");
                         System.out.println(livingroom);
                         livingroom.examine();
@@ -447,7 +464,7 @@ public class GameLoop {
                                     String passcode = user_input.nextLine();
                                     livingroom.exitHouse(passcode);
 
-                                    // Outside the house
+                                    // Outside the house, position equals 3
                                     person.position = 3;
                                     if (!livingroom.getlocked_house()) {
                                         System.out.println(
@@ -460,7 +477,6 @@ public class GameLoop {
                                                 System.out.println(
                                                         "->You used the car key to drive to the court, successfully identified the suspect. Mission Complete! Thank you for your hard work!");
                                                 System.exit(0);
-
                                             } else {
                                                 System.out.println(
                                                         "->Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
@@ -470,7 +486,6 @@ public class GameLoop {
                                         } else {
                                             System.out.println("->You don't have a key to drive the car.");
                                         }
-
                                     } else {
                                         System.out.println("->Unlock failed!");
                                         stillSearching = true;

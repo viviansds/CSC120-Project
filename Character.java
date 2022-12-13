@@ -1,5 +1,8 @@
 import java.util.ArrayList; // import the ArrayList class
 
+/*
+ * This class is the Character
+ */
 public class Character {
     public String name;
     public int position;//track the person's location, 0=bathroom,1=bedroom, 2= living room, 3=outside
@@ -7,11 +10,18 @@ public class Character {
     boolean haveKey = false;
     ArrayList<String> Bag = new ArrayList<String>();
 
+    /*
+     * constructer of the Character class
+     */
     public Character(String name){
         this.name = name;
         this.position = 0;
     }
 
+    /*
+     * character can enter the room and print out where they are
+     * @param room_num  change the number represent the position to the room_num the character wants to enter
+     */
     public void enter(int room_num) {
         if (position!= room_num){
             if (room_num==0){
@@ -29,6 +39,10 @@ public class Character {
         }
     }
 
+    /*
+     * the character can pickup items and save for later use
+     * @param item
+     */
     public void pickup(String item){
         if (haveBag){
         System.out.println("->You just pick up the " + item);
@@ -39,17 +53,27 @@ public class Character {
         }
     }
 
-
+    /*
+     * see if the user have a bag or not
+     * @return haveBag
+     */
     public boolean setHaveBag(){
         haveBag=true;
         return haveBag;
     }
 
+    /*
+     * see if the user have key
+     * @return haveKey
+     */
     public boolean setHaveKey(){
         haveKey = true;
         return haveKey;
     }
     
+    /*
+     * burn the candle
+     */
     public void BurnCandle(){
         if(haveItem("candle")){
             Bag.remove("candle");
@@ -61,6 +85,12 @@ public class Character {
         }
         
     }
+
+    /*
+     * see what items are in the bag
+     * @param item 
+     * @return haveItem the items in the bag
+     */
     public boolean haveItem(String item){
         boolean haveItem=false;
         if (Bag.contains(item)){
