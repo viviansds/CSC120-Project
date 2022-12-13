@@ -68,7 +68,7 @@ public class Bathroom extends Room {
     }
 
     public void examine(){
-        System.out.print("This bedroom contains");
+        System.out.print("This bathroom contains");
         System.out.println(Arrays.toString(items));
 
     }
