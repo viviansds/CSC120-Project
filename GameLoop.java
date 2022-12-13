@@ -1,6 +1,61 @@
 import java.util.Scanner;
 
 public class GameLoop {
+    /* Print a statement whenver there is invalid Input */
+    public static void InvalidInput() {
+        System.out.println("->Sorry, Invalid input.");
+    }
+    
+    /*Print background story*/
+    public static void background() {
+        System.out.println(
+            "--------------------------------------------------------------------------------------------------------------------------");
+    System.out.println("Today is December 21st.");
+    System.out.println(
+            "You are a secret FBI agent and your last assigned mission of this year is to appear in court and identify the suspect at noon today.");
+    System.out.println(
+            "This morning, you were walking down the street, and out of nowhere, the people from the criminal gang kidnapped you.");
+    System.out.println(
+            "After a long while, you woke up in a bath tub around 10:30 and found yourself locked inside a bathroom of an unknown house.");
+    System.out.println(
+            "All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time.");
+    System.out.println("Good Luck!");
+    System.out.println(
+            "--------------------------------------------------------------------------------------------------------------------------");
+    
+    }
+    
+    /*Print welcome message */
+    public static void welcomeMessage(){
+        System.out.println("=======================================================");
+        System.out.println("Which object do you wanna check?");
+        System.out.println("Type 'unlock' if you are ready to try to use the key!");
+        System.out.println("Type 'help' if you need additional tip to proceed.");
+        System.out.println("Type 'quit' if you want to end the game.");
+        System.out.println("=======================================================");
+    }
+    
+    /*Print exit message when unlocked the next room */
+    public static void exitPrompt(){
+        System.out.println("->You unlocked the door. What do you want to do next? (exit the room / check other things in the room)");
+    }
+
+    /* Print Spy story */
+    public static void spyTalk(){
+        System.out.println(
+            "---------------------------------------------------------------------------------");
+        System.out.println(
+                "Hello Secret Agent, my name is Yosef D. Harrison. By the time you reached this point of the gane, you are almost there. I have been a spy in this criminal gang C.Crew for 8 years unde the code name 35.");
+        System.out.println(
+                "My job is to help secret agent like you to get out. I have a strong confidence that you can escape this trap and you will uphold the justice that we always wanted for the world.");
+        System.out.println(
+                "Outside the house, I have prepared you a car to be in court in time. This house is quite far, you won't be able to get to the court without a car under an hour.");
+        System.out.println(
+                "Time's running out. We'll meet each other in the bright future.");
+        System.out.println(
+                "---------------------------------------------------------------------------------");
+    }
+    
     public static void main(String[] arguments) {
         // This is a "flag" to let us know when the game loop should end
         boolean stillPlaying = true;
@@ -33,21 +88,7 @@ public class GameLoop {
         // START GAME
         if (userResponse.equals("START")) {
             // Background Story
-            System.out.println(
-                    "--------------------------------------------------------------------------------------------------------------------------");
-            System.out.println("Today is December 21st.");
-            System.out.println(
-                    "You are a secret FBI agent and your last assigned mission of this year is to appear in court and identify the suspect at noon today.");
-            System.out.println(
-                    "This morning, you were walking down the street, and out of nowhere, the people from the criminal gang kidnapped you.");
-            System.out.println(
-                    "After a long while, you woke up in a bath tub around 10:30 and found yourself locked inside a bathroom of an unknown house.");
-            System.out.println(
-                    "All the rooms inside the house are locked and it is your job to use the clues around you to unlock the door and be at the court in time.");
-            System.out.println("Good Luck!");
-            System.out.println(
-                    "--------------------------------------------------------------------------------------------------------------------------");
-
+            background();
             // Initialize rooms and characters
             Bathroom Bathroom = new Bathroom("Bathroom", false, "key");
             Bedroom bedroom = new Bedroom("Bedroom", true, "passcode", "key");
@@ -55,37 +96,29 @@ public class GameLoop {
             Character person = new Character("You");
             // Start playing loop
             while (stillPlaying) {
-
                 // Bathroom
                 while (person.position == 0) {
                     System.out.println(Bathroom);
                     String key = "key";
-                    Bathroom.examine();
                     while (stillSearching) {
-                        // Scanner Bathroom_scanner = new Scanner(System.in);
-                        System.out.println("=======================================================");
-                        System.out.println("Which object do you wanna check?");
+                        welcomeMessage();
                         Bathroom.examine();
-                        System.out.println("Type 'unlock' if you are ready to try to use the key!");
-                        System.out.println("Type 'help' if you need additional tip to proceed.");
-                        System.out.println("Type 'quit' if you want to end the game.");
-                        System.out.println("=======================================================");
                         System.out.println();
-                        // String object = Bathroom_scanner.nextLine();
+
                         String object = user_input.nextLine().toLowerCase();
 
                         // Check Objects in the room
-                        if (object.equals("toilet")) {
+                        switch (object){
+                        case "toilet":
                             Bathroom.Toilet();
                             System.out.println();
-
-                        } else if (object.equals("bathtub")) {
+                            break;
+                        case "bathtub":
                             Bathroom.Bathtub();
                             System.out.println();
-
-                        } else if (object.equals("mirror")) {
+                            break;
+                        case "mirror":
                             Bathroom.Mirror();
-                            // Scanner Mirror_Scanner = new Scanner(System.in);
                             System.out.println(
                                     "->You remembered fog can make some stain more obvious. Are you going to try that? (yes/no)");
                             String decision_mirror = user_input.nextLine();
@@ -94,12 +127,10 @@ public class GameLoop {
                                         "->Words appeared on the mirror: Don't lose track of time. Find the key.");
                                 System.out.println();
                             }
-                            // Mirror_Scanner.close();
-
-                        } else if (object.equals("closet")) {
+                            break;
+                        case "closet":
                             Bathroom.Closet();
                             if (Bathroom.Bag_in_closet) {
-                                // Scanner Closet_Scanner = new Scanner(System.in);
                                 System.out.println("->Do you want to carry it? (yes/no)");
                                 String decision_bag = user_input.nextLine();
                                 if (decision_bag.equals("yes")) {
@@ -111,18 +142,17 @@ public class GameLoop {
                                     System.out.println("->Okay.");
                                     System.out.println();
                                 } else {
-                                    System.out.println("Invalid input. Please input yes or no.");
+                                    InvalidInput();
                                     System.out.println();
                                 }
                             }
-                            // Closet_Scanner.close();
+                            break;
 
-                        } else if (object.equals("shelves")) {
+                        case "shelves":
                             if (person.haveKey) {
                                 Bathroom.Shelves();
                             } else {
                                 Bathroom.Shelves();
-                                // Scanner shovel_Scanner = new Scanner(System.in);
                                 System.out.println(
                                         "->Do you want to use the shovel to dig the plant and see what will happen? (yes/no)");
                                 String decision_shovel = user_input.nextLine();
@@ -134,8 +164,7 @@ public class GameLoop {
                                     String decision_key = user_input.nextLine();
                                     if (decision_key.equals("yes")) {
                                         bedroom.unlock(key);
-                                        System.out.println(
-                                                "->You unlocked the door. What do you want to do next? (exit the room / check other things in the room)");
+                                        exitPrompt();
                                         // String exit_decision = Bathroom_scanner.nextLine();
                                         String exit_decision = user_input.nextLine();
                                         if (exit_decision.equals("exit the room")) {
@@ -149,19 +178,19 @@ public class GameLoop {
                                                 "->You were stuck in the room and couldn't unlock to go outside. Mission failed.");
                                         System.exit(0);
                                     } else {
-                                        System.out.println("Invalid input. Please input yes or no.");
+                                        InvalidInput();
                                         System.out.println();
                                     }
-                                    // Shelves_Scanner.close();
                                 } else if (decision_shovel.equals("no")) {
                                     System.out.println("->Okay.");
                                     System.out.println();
                                 } else {
-                                    System.out.println("Invalid input. Please input yes or no.");
+                                    InvalidInput();
                                     System.out.println();
                                 }
                             }
-                        } else if (object.equals("unlock")) {
+                            break;
+                        case "unlock":
                             if (person.haveKey) {
                                 System.out.println("->You unlocked the door.");
                                 person.enter(1);
@@ -170,18 +199,19 @@ public class GameLoop {
                                 System.out.println("->The bathroom is locked. Try to find a key inside this room.");
                                 System.out.println();
                             }
+                            break;
 
-                        } else if (object.equals("help")) {
+                        case "help":
                             System.out.println(
                                     "->Type a name of the item in the room to start searching. For example, type 'closet'.");
                             System.out.println();
-
-                        } else if (object.equals("quit")) {
+                            break;
+                        case "quit":
                             System.out.println("->Thank you for playing, bye!");
                             System.exit(0);
-
-                        } else {
-                            System.out.println("->Invalid Object, please select one inside the room.");
+                            break;
+                        default:
+                            InvalidInput();
                             System.out.println();
                         }
                     }
@@ -202,55 +232,51 @@ public class GameLoop {
                     } else {// start searching in bedroom
                         int count = 3;
                         while (stillSearching && count > 0) {
-                            // Scanner Bedroom_Scanner = new Scanner(System.in);
-                            System.out.println("=======================================================");
-                            System.out.println("Which object do you wanna check?");
+                            welcomeMessage();
                             bedroom.examine();
-                            System.out.println("Type 'unlock' if you are ready to try to use the key!");
-                            System.out.println("Type 'help' if you need additional tip to proceed.");
-                            System.out.println("Type 'quit' if you want to end the game.");
-                            System.out.println("=======================================================");
                             System.out.println();
                             String object = user_input.nextLine().toLowerCase();
 
                             // Check Objects in the room
-                            if (object.equals("bed")) {
+                            switch(object){
+                            case "bed":
                                 bedroom.Bed();
                                 System.out.println();
+                                break;
 
-                            } else if (object.equals("closet")) {
+                            case "closet":
                                 bedroom.Closet();
                                 System.out.println();
+                                break;
 
-                            } else if (object.equals("drawers")) {
+                            case "drawers":
                                 bedroom.Drawers();
                                 System.out.println();
+                                break;
 
-                            } else if (object.equals("curtain")) {
+                            case "curtain":
                                 bedroom.Curtains();
                                 System.out.println();
-
-                            } else if (object.equals("lamp")) {
-                                // Scanner Lamp_Scanner = new Scanner(System.in);
-                                System.out.println("->Input On/Off to change the status of the lamp");
+                                break;
+                            case "lamp":
+                                System.out.println("->Input (On/Off) to change the status of the lamp");
                                 String OnOff = user_input.nextLine().toLowerCase();
                                 if (OnOff.equals("on")) {
                                     bedroom.turn_on_lamp();
                                 } else if (OnOff.equals("off")) {
                                     bedroom.turn_off_lamp();
                                 } else {
-                                    System.out.println("Invalid input. Please input on or off.");
+                                    InvalidInput();
                                     System.out.println();
                                 }
-
-                            } else if (object.equals("unlock")) {
+                                break;
+                            case "unlock":
                                 System.out.println("->Input the passcode");
                                 // Scanner password = new Scanner(System.in);
                                 String passcode = user_input.nextLine();
                                 // if passcode is correct
                                 if (livingroom.unlock(passcode)) {
-                                    System.out.println(
-                                            "->You unlock the door. What do you want to do next? (exit the room / check other things in the room) ");
+                                    exitPrompt();
                                     String exit_decision = user_input.nextLine();
                                     if (exit_decision.equals("exit the room")) {
                                         person.enter(2);
@@ -264,18 +290,20 @@ public class GameLoop {
                                     count = count - 1;
                                     System.out.println("->You have " + count + " more tries!");
                                 }
-
-                            } else if (object.equals("help")) {
+                                break;
+                            case "help":
                                 System.out.println(
                                         "->Type a name of the item in the room to start searching. For example, type 'closet'.");
                                 System.out.println();
-
-                            } else if (object.equals("quit")) {
+                                break;
+                            case "quit":
                                 System.out.println("->Thank you for playing, bye!");
                                 System.exit(0);
-
-                            } else {
-                                System.out.println("->Invalid Object, please select one inside the room.");
+                                break;
+                            case "go back":
+                                break;
+                            default:
+                                InvalidInput();
                                 System.out.println();
                             }
 
@@ -310,16 +338,13 @@ public class GameLoop {
                         while (stillSearching && attempt > 0) {
                             if (stillSearching) {
                                 // Scanner LR_scanner = new Scanner(System.in);
-                                System.out.println("=======================================================");
-                                System.out.println("Which object do you wanna check?");
+                                welcomeMessage();
                                 livingroom.examine();
-                                System.out.println("Type 'unlock' if you are ready to try to use the key!");
-                                System.out.println("Type 'help' if you need additional tip to proceed.");
-                                System.out.println("Type 'quit' if you want to end the game.");
-                                System.out.println("=======================================================");
                                 System.out.println();
                                 String object = user_input.nextLine().toLowerCase();
-                                if (object.equals("sofa")) {
+
+                                switch(object){
+                                case "sofa":
                                     livingroom.CheckSofa();
                                     // Scanner Sofa_Scanner = new Scanner(System.in);
                                     System.out.println("->Do you want to pick it up? (yes/no)");
@@ -334,11 +359,11 @@ public class GameLoop {
                                         System.out.println("->Okay.");
                                         System.out.println();
                                     } else {
-                                        System.out.println("Invalid input. Please input yes or no.");
+                                        InvalidInput();
                                         System.out.println();
                                     }
-
-                                } else if (object.equals("carpet")) {
+                                    break;
+                                case "carpet":
                                     livingroom.CheckCarpet();
                                     System.out.println("->Do you want to pick it up? (yes/no)");
                                     // Scanner Carpet_Scanner = new Scanner(System.in);
@@ -351,15 +376,17 @@ public class GameLoop {
                                         System.out.println("->Okay.");
                                         System.out.println();
                                     } else {
-                                        System.out.println("Invalid input. Please input yes or no.");
+                                        InvalidInput();
                                         System.out.println();
                                     }
+                                    break;
 
-                                } else if (object.equals("fire place")) {
+                                case "fire place":
                                     livingroom.CheckFireplace();
                                     System.out.println();
+                                    break;
 
-                                } else if (object.equals("floor lamp")) {
+                                case "floor lamp":
                                     livingroom.Floorlamp();
                                     System.out.println(
                                             "->What do you want to do next? (burn the candle/shut off the fireplace)");
@@ -372,31 +399,18 @@ public class GameLoop {
                                         livingroom.ShutOffFireplace();
                                         System.out.println();
                                     } else {
-                                        System.out.println(
-                                                "Invalid input. Please input 'burn the candle' or 'shut off the fireplace'.");
+                                        InvalidInput();
                                         System.out.println();
                                     }
-
-                                } else if (object.equals("tv")) {
+                                    break;
+                                case "tv":
                                     livingroom.TurnOnTV();
-                                    // Scanner TV_Scanner = new Scanner(System.in);
                                     String decision_TV = user_input.nextLine();
                                     if (decision_TV.equals("yes")) {
                                         System.out.println("->You wasted too long binge watching TV, Mission Failed!");
                                         System.exit(0);
                                     } else if (decision_TV.equals("switch a channel")) {
-                                        System.out.println(
-                                                "---------------------------------------------------------------------------------");
-                                        System.out.println(
-                                                "Hello Secret Agent, my name is Yosef D. Harrison. By the time you reached this point of the gane, you are almost there. I have been a spy in this criminal gang C.Crew for 8 years unde the code name 35.");
-                                        System.out.println(
-                                                "My job is to help secret agent like you to get out. I have a strong confidence that you can escape this trap and you will uphold the justice that we always wanted for the world.");
-                                        System.out.println(
-                                                "Outside the house, I have prepared you a car to be in court in time. This house is quite far, you won't be able to get to the court without a car under an hour.");
-                                        System.out.println(
-                                                "Time's running out. We'll meet each other in the bright future.");
-                                        System.out.println(
-                                                "---------------------------------------------------------------------------------");
+                                        spyTalk();
                                         System.out.println();
 
                                     } else if (decision_TV.equals("stop watching and turn off tv")) {
@@ -404,12 +418,12 @@ public class GameLoop {
                                         System.out.println();
                                         stillSearching = true;
                                     }else{
-                                        System.out.println("Invalid input. Please input yes, switch a channel, or stop watching and turn off tv.");
+                                        InvalidInput();
+                                        System.out.println();
                                     }
-
-                                } else if (object.equals("unlock")) {
+                                    break;
+                                case "unlock":
                                     System.out.println("->Input the passcode");
-                                    // Scanner password_scanner = new Scanner(System.in);
                                     String passcode = user_input.nextLine();
                                     livingroom.exitHouse(passcode);
 
@@ -443,19 +457,18 @@ public class GameLoop {
                                         attempt -= 1;
                                         System.out.println("->You have " + attempt + " more tries!");
                                     }
-                                } else if (object.equals("help")) {
+                                    break;
+                                case "help":
                                     System.out.println(
                                             "->Type a name of the item in the room to start searching. For example, type 'sofa'.");
                                     System.out.println();
-
-                                } else if (object.equals("quit")) {
+                                    break;
+                                case "quit":
                                     System.out.println("->Thank you for playing, bye!");
                                     System.exit(0);
-
-                                } else if (object.equals("go back")) {
                                     break;
-                                } else {
-                                    System.out.println("Invalid Object, please select one inside the room.");
+                                default:
+                                    InvalidInput();
                                     System.out.println();
                                 }
                             }
