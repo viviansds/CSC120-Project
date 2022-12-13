@@ -26,13 +26,24 @@ public class GameLoop {
     }
     
     /*Print welcome message */
-    public static void welcomeMessage(){
-        System.out.println("=======================================================");
-        System.out.println("Which object do you wanna check?");
-        System.out.println("Type 'unlock' if you are ready to try to use the key!");
-        System.out.println("Type 'help' if you need additional tip to proceed.");
-        System.out.println("Type 'quit' if you want to end the game.");
-        System.out.println("=======================================================");
+    public static void welcomeMessage(String room){
+        if (room.equals("bathroom")){
+            System.out.println("=======================================================");
+            System.out.println("Which object do you wanna check?");
+            System.out.println("Type 'unlock' if you are ready to try to use the key!");
+            System.out.println("Type 'help' if you need additional tip to proceed.");
+            System.out.println("Type 'quit' if you want to end the game.");
+            System.out.println("=======================================================");
+        }else{ 
+            System.out.println("=======================================================");
+            System.out.println("Which object do you wanna check?");
+            System.out.println("Type 'unlock' if you are ready to try to use the key!");
+            System.out.println("Type 'help' if you need additional tip to proceed.");
+            System.out.println("Type 'go back' if you want to go to a previous room");
+            System.out.println("Type 'quit' if you want to end the game.");
+            System.out.println("=======================================================");
+        }
+        
     }
     
     /*Print exit message when unlocked the next room */
@@ -75,7 +86,7 @@ public class GameLoop {
 
         // Instructions are sometimes helpful
         System.out.println("Ready to play? Enter 'START'");
-        userResponse = user_input.nextLine();
+        userResponse = user_input.nextLine().toUpperCase();
         System.out.println("|");
         System.out.println("|");
         System.out.println("|");
@@ -83,7 +94,7 @@ public class GameLoop {
         System.out.println("|");
         System.out.println("|");
 
-        // change the userinput to uppercase
+
 
         // START GAME
         if (userResponse.equals("START")) {
@@ -101,12 +112,16 @@ public class GameLoop {
                     System.out.println(Bathroom);
                     String key = "key";
                     while (stillSearching) {
-                        welcomeMessage();
+                        welcomeMessage("bathroom");
                         Bathroom.examine();
                         System.out.println();
 
                         String object = user_input.nextLine().toLowerCase();
 
+                        if (object.equals("go back")){
+                            System.out.println("There is no room before the bathroom");
+                            break;
+                        }
                         // Check Objects in the room
                         switch (object){
                         case "toilet":
@@ -221,24 +236,27 @@ public class GameLoop {
                     System.out.println(
                             "You have unlocked the bedroom! Type 'Bathroom' if you want to go back to bathroom. Hit enter to continue!");
                     String bathroom_name1 = user_input.nextLine();
-                    System.out.println(
-                            "You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six digits. ");
-                    System.out.println(bedroom);
-                    bedroom.examine();
-                    stillSearching = true;
-
                     if (bathroom_name1.equals("Bathroom")) {
                         person.enter(0);
                     } else {// start searching in bedroom
+                        System.out.println(
+                            "You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six digits. ");
+                        System.out.println(bedroom);
+                        bedroom.examine();
+                        stillSearching = true;
                         int count = 3;
                         while (stillSearching && count > 0) {
-                            welcomeMessage();
+                            welcomeMessage("bedroom");
                             bedroom.examine();
                             System.out.println();
                             String object = user_input.nextLine().toLowerCase();
 
+                            if (object.equals("go back")){
+                                break;
+                            }
                             // Check Objects in the room
                             switch(object){
+                            
                             case "bed":
                                 bedroom.Bed();
                                 System.out.println();
@@ -300,12 +318,12 @@ public class GameLoop {
                                 System.out.println("->Thank you for playing, bye!");
                                 System.exit(0);
                                 break;
-                            case "go back":
-                                break;
                             default:
                                 InvalidInput();
                                 System.out.println();
                             }
+                            
+                            
 
                         }
                         if (count == 0) {// Ran out of unlock attempts
@@ -338,11 +356,13 @@ public class GameLoop {
                         while (stillSearching && attempt > 0) {
                             if (stillSearching) {
                                 // Scanner LR_scanner = new Scanner(System.in);
-                                welcomeMessage();
+                                welcomeMessage("living room");
                                 livingroom.examine();
                                 System.out.println();
                                 String object = user_input.nextLine().toLowerCase();
-
+                                if (object.equals("go back")){
+                                    break;
+                                }
                                 switch(object){
                                 case "sofa":
                                     livingroom.CheckSofa();
