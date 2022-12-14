@@ -15,12 +15,11 @@ public class Bathroom extends Room {
     }
 
     /*
-     * see if the bag is still in the closet
-     * @return Bag_in_closet
+     * change the status of whether the bag is still inside the closet
+     * @param a boolean true if there is still bag inside the closet not picked up
      */
-    public boolean setBag_in_closet(){
-        Bag_in_closet=false;
-        return Bag_in_closet;
+    public void setBag_in_closet(boolean status){
+        Bag_in_closet=status;
     }
     
     /*
@@ -66,7 +65,9 @@ public class Bathroom extends Room {
             System.out.println("->Nothing is inside the closet.");
         }
     }
-
+    /*
+     * Override examine to reflect the items inside Bathroom
+     */
     public void examine(){
         System.out.print("This bathroom contains");
         System.out.println(Arrays.toString(items));

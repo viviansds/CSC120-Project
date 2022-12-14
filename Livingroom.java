@@ -9,6 +9,7 @@ public class Livingroom extends Room{
     protected String entry_method;
     protected String exit_code;
     public boolean candle_status = true;
+    public boolean keychain_status = true;
     protected boolean locked_house;//locked front door
    
     /*
@@ -62,7 +63,7 @@ public class Livingroom extends Room{
     /*
      * print the clues on the sofa
      */
-    public void CheckSofa(){
+    public void checkSofa(){
         if(candle_status){
             System.out.println("The sofa is L-shaped. Under the sofa cushion, you found a candle. As you take a closer look, there seems to be something stuck inside the candle wax.");
         }else{
@@ -72,25 +73,36 @@ public class Livingroom extends Room{
     }
 
     /*
-     * see if the candle is still in the closet
-     * @return candle_status
+     * change the status of whether keychains is still under the carpet candle is still in the sofa
+     * @param a boolean true if there is still candle not picked up  
      */
-    public boolean set_candle_status(){
-        candle_status=false;
-        return candle_status;
+    public void setCandle_status(boolean status){
+        candle_status=status;
+    }
+
+    /*
+     * change the status of whether keychains is still under the carpet
+     *  @param a boolean true if there is still keychains are not picked up
+     */
+    public void setKeychain_status(boolean status){
+        keychain_status=false;
     }
 
     /*
      * print the clues on the carpet
      */
-    public void CheckCarpet(){
-        System.out.println("You found a Key Chain with a set of keys each labeling a letter from A-F." );
+    public void checkCarpet(){
+        if(keychain_status){
+            System.out.println("You found a Key Chain with a set of keys each labeling a letter from A-F." );
+        }else{
+            System.out.println("Nothing found under the carpet");
+        }
     }
 
     /*
      * print the clues in the fireplace
      */
-    public void CheckFireplace(){
+    public void checkFireplace(){
         System.out.println("After a long search in the ashes, you found a half burnt letter with the following messsage: ");
         System.out.println(" __    __    __    __ ");
         System.out.println(" __|  |__   |__|  |__ ");

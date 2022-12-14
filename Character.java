@@ -45,41 +45,41 @@ public class Character {
      */
     public void pickup(String item){
         if (haveBag){
-        System.out.println("->You just pick up the " + item);
-        Bag.add(item);
-        System.out.println(Bag);
+            System.out.println("->You just pick up the " + item);
+            Bag.add(item);
+            System.out.println(Bag);
         }else{
             System.out.println("->You can't have this item because you don't have a bag.");
         }
     }
 
     /*
-     * see if the user have a bag or not
-     * @return haveBag
+     * change the status of whether the person have bag
+     * @return status: a boolean true if the person have key
      */
-    public boolean setHaveBag(){
-        haveBag=true;
-        return haveBag;
+    public void setHaveBag(boolean status){
+        haveBag=status;
+        System.out.println("->You got the bag and were able to pick up things.");
     }
 
     /*
-     * see if the user have key
-     * @return haveKey
+     * change the status of whether the person have key
+     *  @param status: a boolean true if the person have key
      */
-    public boolean setHaveKey(){
-        haveKey = true;
-        return haveKey;
+    public void setHaveKey(boolean status){
+        haveKey = status;
+        System.out.println("->God job! You found a key in the plant.");
     }
     
     /*
      * burn the candle
      */
-    public void BurnCandle(){
+    public void burnCandle(){
         if(haveItem("candle")){
             Bag.remove("candle");
             System.out.println("Bag has"+Bag);
             System.out.println("As Candle start burning, it started to melt and a note came out of the wax. The message wrote:");
-            System.out.println("I'm the beginning of the end, the end of every place. I'm the beginning of eternity, the end of time and space. What am I?. If you know what I am, use me to find the right key to drive the car.");
+            System.out.println("I'm the beginning of the end, the end of every place. I'm the beginning of eternity, the end of time and space. What am I?. If you know what I am, use me to identify the right key in the keychains to drive the car.");
         }else{
             System.out.println("You don't have a candle in your bag yet");
         }
@@ -89,7 +89,7 @@ public class Character {
     /*
      * see what items are in the bag
      * @param item 
-     * @return haveItem the items in the bag
+     * @return haveItem:the items in the bag
      */
     public boolean haveItem(String item){
         boolean haveItem=false;

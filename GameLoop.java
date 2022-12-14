@@ -122,6 +122,7 @@ public class GameLoop {
             Character person = new Character("You");
             // Start playing loop
             while (stillPlaying) {
+
                 // Bathroom
                 while (person.position == 0) {
                     // when position equals 0, the character is in Bathroom
@@ -166,10 +167,9 @@ public class GameLoop {
                                 System.out.println("->Do you want to carry it? (yes/no)");
                                 String decision_bag = user_input.nextLine();
                                 if (decision_bag.equals("yes")) {
-                                    System.out.println("->You got the bag and were able to pick up things.");
+                                    person.setHaveBag(true);
                                     System.out.println();
-                                    person.setHaveBag();
-                                    Bathroom.setBag_in_closet();
+                                    Bathroom.setBag_in_closet(false);
                                 } else if (decision_bag.equals("no")) {
                                     System.out.println("->Okay.");
                                     System.out.println();
@@ -188,15 +188,12 @@ public class GameLoop {
                                         "->Do you want to use the shovel to dig the plant and see what will happen? (yes/no)");
                                 String decision_shovel = user_input.nextLine();
                                 if (decision_shovel.equals("yes")) {
-                                    person.setHaveKey();
-                                    System.out.println("->God job! You found a key in the plant.");
-                                    // Scanner Shelves_Scanner = new Scanner(System.in);
+                                    person.setHaveKey(true);
                                     System.out.println("->Do you want to use them or not? (yes/no)");
                                     String decision_key = user_input.nextLine();
                                     if (decision_key.equals("yes")) {
                                         bedroom.unlock(key);
                                         exitPrompt();
-                                        // String exit_decision = Bathroom_scanner.nextLine();
                                         String exit_decision = user_input.nextLine();
                                         if (exit_decision.equals("exit the room")) {
                                             person.enter(1);
@@ -246,7 +243,7 @@ public class GameLoop {
                         }
                     }
                 }
-                // bedroom section
+                // Bedroom
                 while (person.position == 1) {
                     // when position equals 1, the character is in bedroom
                     System.out.println("=======================================================");
@@ -382,18 +379,18 @@ public class GameLoop {
                                 }
                                 switch(object){
                                 case "sofa":
-                                    livingroom.CheckSofa();
-                                    // Scanner Sofa_Scanner = new Scanner(System.in);
+                                    livingroom.checkSofa();
                                     if(livingroom.candle_status){
                                         System.out.println("->Do you want to pick it up? (yes/no)");
                                         String decision_candle = user_input.nextLine();
                                         if (decision_candle.equals("yes")) {
                                             person.pickup("candle");
-                                            if(person.haveBag){
-                                                livingroom.set_candle_status();
+                                            if (person.haveItem("candle")){
+                                                livingroom.setCandle_status(false);
                                             }else{
-                                                System.out.println();
+                                                livingroom.setCandle_status(true);
                                             }
+                                            System.out.println();
                                         } else if (decision_candle.equals("no")) {
                                             System.out.println("->Okay.");
                                             System.out.println();
@@ -401,30 +398,39 @@ public class GameLoop {
                                             InvalidInput();
                                             System.out.println();
                                         }
-                                        break;
                                     } else{
                                         break;
                                     }
+                                    break;
                                 case "carpet":
-                                    livingroom.CheckCarpet();
-                                    System.out.println("->Do you want to pick it up? (yes/no)");
-                                    // Scanner Carpet_Scanner = new Scanner(System.in);
-                                    String decision_keychains = user_input.nextLine();
-                                    if (decision_keychains.equals("yes")) {
-                                        person.pickup("key chains");
-                                        System.out.println();
+                                    livingroom.checkCarpet();
+                                    if(livingroom.keychain_status){
+                                        System.out.println("->Do you want to pick it up? (yes/no)");
+                                        String decision_keychains = user_input.nextLine();
+                                        if (decision_keychains.equals("yes")) {
+                                            person.pickup("key chains");
+                                            if (person.haveItem("key chains")){
+                                                livingroom.setKeychain_status(false);
+                                            }else{
+                                                livingroom.setKeychain_status(true);
+                                            }
+                                            System.out.println();
+                                            livingroom.setKeychain_status(false);
 
-                                    } else if (decision_keychains.equals("no")) {
-                                        System.out.println("->Okay.");
-                                        System.out.println();
-                                    } else {
-                                        InvalidInput();
-                                        System.out.println();
+                                        } else if (decision_keychains.equals("no")) {
+                                            System.out.println("->Okay.");
+                                            System.out.println();
+                                        } else {
+                                            InvalidInput();
+                                            System.out.println();
+                                        }
+                                    }else{
+                                        break;
                                     }
                                     break;
 
                                 case "fire place":
-                                    livingroom.CheckFireplace();
+                                    livingroom.checkFireplace();
                                     System.out.println();
                                     break;
 
@@ -435,7 +441,7 @@ public class GameLoop {
                                     // Scanner Floorlamp_Scanner = new Scanner(System.in);
                                     String decision_floorlamp = user_input.nextLine();
                                     if (decision_floorlamp.equals("burn the candle")) {
-                                        person.BurnCandle();
+                                        person.burnCandle();
                                         System.out.println();
                                     } else if (decision_floorlamp.equals("shut off the fireplace")) {
                                         livingroom.ShutOffFireplace();

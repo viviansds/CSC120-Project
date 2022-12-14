@@ -37,8 +37,8 @@ public class Room {
     }
 
     /*
-     * show what entry method is needed
-     * @return this.entry_method
+     * Accessor for entry_method
+     * @return this.entry_method in order to unlock the room
      */
     public String getEntry_method(){
         return this.entry_method;
