@@ -1,3 +1,10 @@
+/*
+ * Livingroom class: The livingroom class contains clues found in livingroom-specific objects.
+ * Final Project: The Escape room
+ * @author Zhirou Liu, Yujie Gong, Vivian Wei
+ * @version 14 December 2022
+ */
+
 import java.util.Arrays;
 
 /*

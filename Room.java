@@ -1,3 +1,10 @@
+/*
+ * Room class: The room class contains basic feature of a room and work as a parent class for future inheretence.
+ * Final Project: The Escape room
+ * @author Zhirou Liu, Yujie Gong, Vivian Wei
+ * @version 14 December 2022
+ */
+
 import java.util.Arrays;
 
 /*

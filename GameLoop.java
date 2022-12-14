@@ -1,3 +1,10 @@
+/*
+ * Gameloop class: The Gameloop class allows the player to discover clues as they move through various room locations.
+ * Final Project: The Escape room
+ * @author Zhirou Liu, Yujie Gong, Vivian Wei
+ * @version 14 December 2022
+ */
+
 import java.util.Scanner;
 
 /*

@@ -1,3 +1,10 @@
+/*
+ * Character class: The character class contains actions and traits that the player need to interact with the rooms
+ * Final Project: The Escape room
+ * @author Zhirou Liu, Yujie Gong, Vivian Wei
+ * @version 14 December 2022
+ */
+
 import java.util.ArrayList; // import the ArrayList class
 
 /*
