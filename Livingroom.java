@@ -8,6 +8,7 @@ public class Livingroom extends Room{
     String[] items= {"Sofa", "Carpet", "Fire place", "TV", "Floor lamp"};
     protected String entry_method;
     protected String exit_code;
+    public boolean candle_status = true;
     protected boolean locked_house;//locked front door
    
     /*
@@ -62,7 +63,21 @@ public class Livingroom extends Room{
      * print the clues on the sofa
      */
     public void CheckSofa(){
-        System.out.println("The sofa is L-shaped. Under the sofa cushion, you found a candle. As you take a closer look, there seems to be something stuck inside the candle wax.");
+        if(candle_status){
+            System.out.println("The sofa is L-shaped. Under the sofa cushion, you found a candle. As you take a closer look, there seems to be something stuck inside the candle wax.");
+        }else{
+            System.out.println("The sofa is L-shaped.");
+        }
+        
+    }
+
+    /*
+     * see if the candle is still in the closet
+     * @return candle_status
+     */
+    public boolean set_candle_status(){
+        candle_status=false;
+        return candle_status;
     }
 
     /*

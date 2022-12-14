@@ -384,22 +384,27 @@ public class GameLoop {
                                 case "sofa":
                                     livingroom.CheckSofa();
                                     // Scanner Sofa_Scanner = new Scanner(System.in);
-                                    System.out.println("->Do you want to pick it up? (yes/no)");
-                                    String decision_candle = user_input.nextLine();
-                                    if (decision_candle.equals("yes")) {
-                                        person.pickup("candle");
-                                        System.out.println();
-                                        person.haveBag = true;
-                                        System.out.println();
-
-                                    } else if (decision_candle.equals("no")) {
-                                        System.out.println("->Okay.");
-                                        System.out.println();
-                                    } else {
-                                        InvalidInput();
-                                        System.out.println();
+                                    if(livingroom.candle_status){
+                                        System.out.println("->Do you want to pick it up? (yes/no)");
+                                        String decision_candle = user_input.nextLine();
+                                        if (decision_candle.equals("yes")) {
+                                            person.pickup("candle");
+                                            if(person.haveBag){
+                                                livingroom.set_candle_status();
+                                            }else{
+                                                System.out.println();
+                                            }
+                                        } else if (decision_candle.equals("no")) {
+                                            System.out.println("->Okay.");
+                                            System.out.println();
+                                        } else {
+                                            InvalidInput();
+                                            System.out.println();
+                                        }
+                                        break;
+                                    } else{
+                                        break;
                                     }
-                                    break;
                                 case "carpet":
                                     livingroom.CheckCarpet();
                                     System.out.println("->Do you want to pick it up? (yes/no)");
