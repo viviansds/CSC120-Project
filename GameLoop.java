@@ -120,7 +120,6 @@ public class GameLoop {
 
             // Start playing loop
             while (stillPlaying) {
-
                 // Bathroom
                 while (person.position == 0) {
                     // when position equals 0, the character is in Bathroom
@@ -189,15 +188,21 @@ public class GameLoop {
                                     System.out.println("->Do you want to use them or not? (yes/no)");//a further prompt ask them whether they want to unlock the door
                                     String decision_key = user_input.nextLine().toLowerCase();
                                     if (decision_key.equals("yes")) {
-                                        bedroom.unlock(key);
-                                        exitPrompt();
-                                        String exit_decision = user_input.nextLine().toLowerCase();
-                                        if (exit_decision.equals("exit the room")) {
-                                            person.enter(1);//the user enter position 1, which is the bathroom
-                                            stillSearching = false;
-                                        } else if (exit_decision.equals("check other things in the room")) {
-                                            stillSearching = true;//allow users to keep checking other things in the room
-                                        }
+                                        while(bedroom.unlock(key)){
+                                            exitPrompt();
+                                            String exit_decision = user_input.nextLine().toLowerCase();
+                                            if (exit_decision.equals("exit the room")) {
+                                                person.enter(1);//the user enter position 1, which is the bathroom
+                                                stillSearching = false;
+                                                break;
+                                            } else if (exit_decision.equals("check other things in the room")) {
+                                                stillSearching = true;//allow users to keep checking other things in the room
+                                                break;
+                                            } else { // invalid input
+                                                InvalidInput();
+                                                System.out.println();
+                                            }
+                                        };
                                     } else if (decision_key.equals("no")) {//if the user do not use the key at that moment, they are stuck and lose the game.
                                         System.out.println(
                                                 "->You were stuck in the room and couldn't unlock to go outside. Mission failed.");
@@ -245,6 +250,7 @@ public class GameLoop {
                 }
                 // Bedroom
                 while (person.position == 1) {// when position equals 1, the character is in bedroom
+                    stillSearching = true;
                     System.out.println(
                             "You have unlocked the bedroom! Type 'Bathroom' if you want to go back to bathroom. Hit enter to continue!");
                     String bathroom_name1 = user_input.nextLine();
@@ -255,7 +261,6 @@ public class GameLoop {
                         System.out.println(
                             "You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six digits. ");
                         System.out.println(bedroom);
-                        stillSearching = true;
                         int count = 3;//initialize a counter to keep track of the times that the user have left to try inputting passcode
                         while (stillSearching && count > 0) {
                             //stillSearching keep the user in this loop. Set the maximum times the user can try the code.
@@ -299,16 +304,21 @@ public class GameLoop {
                                 System.out.println("->Input the passcode");
                                 String passcode = user_input.nextLine();//case sensitive because the passcode uses capitalized letters
                                 // if passcode is correct
-                                if (livingroom.unlock(passcode)) {
+                                while (livingroom.unlock(passcode)) {
                                     exitPrompt();
                                     String exit_decision = user_input.nextLine().toLowerCase();
                                     if (exit_decision.equals("exit the room")) {
                                         person.enter(2);//user's position changes to 2, which is the living room
                                         stillSearching = false;
+                                        break;
                                     } else if (exit_decision.equals("check other things in the room")) {
                                         stillSearching = true;
+                                        break;
+                                    } else{
+                                        InvalidInput();//invalid input
+                                        System.out.println();
                                     }
-                                }else {
+                                }if(!livingroom.unlock(passcode)) {
                                     System.out.println("->Unlock failed!");
                                     stillSearching = true;
                                     count -= 1;

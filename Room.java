@@ -72,7 +72,7 @@ public class Room {
                     unlock = true;
                 }
         }else{
-            System.out.println("->The door is unlocked");
+        //     System.out.println("->The door is unlocked");
             unlock = true;
         }return unlock;
     }
