@@ -68,11 +68,11 @@ public class Room {
         if (locked_door){
                 if(unlock_method.equals(getEntry_method())){
                     locked_door=false;
-                    System.out.println("Great job! You unlocked the door.");
+                    System.out.println("->Great job! You unlocked the door.");
                     unlock = true;
                 }
         }else{
-            System.out.println("The door is already unlocked");
+            System.out.println("->The door is unlocked");
             unlock = true;
         }return unlock;
     }

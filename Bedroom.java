@@ -50,30 +50,28 @@ public class Bedroom extends Room{
         System.out.println("->You opened the curtain and you saw two red numbers '5' '8' written on the window. ");
     }
 
-    /*
-     * turn on the lamp if the lamp is not on
-     */
-    public void turn_on_lamp(){
-        if (!lamp_status){
-        System.out.println("->You turned on the lamp. As the room got brighter, you saw a note sticked inside the lamp saying that 'From letter to number, from small to big.'");
-        lamp_status = true;
-        }else{
-            System.out.println("->The lamp is already on!");
+    /* Turn on and off the lamp
+     * @param String OnOff: commands to adjust on/off status
+    */
+    public boolean lamp(String OnOff){
+        if (OnOff.equals("on")){
+            if (!lamp_status){//only turns on lamp when lamp_status is false
+                System.out.println("->You turned on the lamp. As the room got brighter, you saw a note sticked inside the lamp saying that 'From letter to number, from small to big.'");
+                lamp_status = true;
+            }else{
+                System.out.println("->The lamp is already on!");
+            }
+        }else if (OnOff.equals("off")){
+            if(lamp_status){//only turns off lamp when lamp_status is true
+                System.out.println("->You turned off the lamp");
+                lamp_status = false;
+            }else{
+                System.out.println("->The lamp is already off");
+            }
         }
+            
+        return lamp_status;
     }
-
-    /*
-     * turn off the lamp if the lamp is not off
-     */
-    public void turn_off_lamp(){
-        if (lamp_status){
-        System.out.println("->You turned off the lamp");
-        lamp_status = false;
-        }else{
-            System.out.println("->The lamp is already off");
-        }
-    }
-
     /*
      * print what the bedroom contains
      */

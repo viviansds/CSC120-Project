@@ -13,7 +13,7 @@ import java.util.Scanner;
  */ 
 public class GameLoop {
     /*
-     * Print a statement whenver there is invalid Input
+     * Print a statement whenver the user inputs an invalid input
      */
     public static void InvalidInput() {
         System.out.println("->Sorry, Invalid input.");
@@ -71,22 +71,11 @@ public class GameLoop {
         System.out.println("->You unlocked the door. What do you want to do next? (exit the room / check other things in the room)");
     }
 
-    /* 
-     * Print Spy story 
-     */
-    public static void spyTalk(){
-        System.out.println(
-            "---------------------------------------------------------------------------------");
-        System.out.println(
-                "Hello Secret Agent, my name is Yosef D. Harrison. By the time you reached this point of the gane, you are almost there. I have been a spy in this criminal gang C.Crew for 8 years unde the code name 35.");
-        System.out.println(
-                "My job is to help secret agent like you to get out. I have a strong confidence that you can escape this trap and you will uphold the justice that we always wanted for the world.");
-        System.out.println(
-                "Outside the house, I have prepared you a car to be in court in time. This house is quite far, you won't be able to get to the court without a car under an hour.");
-        System.out.println(
-                "Time's running out. We'll meet each other in the bright future.");
-        System.out.println(
-                "---------------------------------------------------------------------------------");
+    
+    /* Prints a goodbye message and end the program */
+    public static void goodbye(){
+        System.out.println("->Thank you for playing, bye!");
+        System.exit(0);
     }
     
     public static void main(String[] arguments) {
@@ -101,7 +90,7 @@ public class GameLoop {
         // Storage for user's responses
         String userResponse = "";
 
-        // This could be replaced with a more interesting opening
+        // Game opening
         System.out.println("****************************");
         System.out.println("WELCOME TO THE ESCAPE ROOM");
         System.out.println("****************************");
@@ -122,11 +111,13 @@ public class GameLoop {
         if (userResponse.equals("START")) {
             // Background Story
             background();
+
             // Initialize rooms and characters
             Bathroom Bathroom = new Bathroom("Bathroom", false, "key");
             Bedroom bedroom = new Bedroom("Bedroom", true, "passcode", "key");
             Livingroom livingroom = new Livingroom("Living Room", true, "entry_code");
             Character person = new Character("You");
+
             // Start playing loop
             while (stillPlaying) {
 
@@ -134,107 +125,101 @@ public class GameLoop {
                 while (person.position == 0) {
                     // when position equals 0, the character is in Bathroom
                     System.out.println(Bathroom);
-                    String key = "key";
+                    String key = "key";//initialize a key to be discoverd in the 'closet' case for unlocking the bathroom
                     while (stillSearching) {
                         // stillSearching keep the user in this loop
                         welcomeMessage("bathroom");
                         Bathroom.examine();
                         System.out.println();
-                        // no limit for user input's form
+                        // change all user format to lowercase
                         String object = user_input.nextLine().toLowerCase();
-                        // see if the user want to go to the rooms that are opened already
-                        if (object.equals("go back")){
-                            System.out.println("There is no room before the bathroom");
-                            break;
-                        }
-                        // Check Objects in the room depend on user's input
+                        // Check Objects in the room depending on user's inputs
                         switch (object){
-                        //When user checks the toilet, call the Toilet method from the bathroom class
+                        //When user checks the toilet, they will find nothing in it. This is a useless clue.
                         case "toilet": 
                             Bathroom.Toilet();
                             System.out.println();
                             break;
-                        //When user checks the bathtub, call the Bathtub method from the bathroom class
+                        //When user checks the bathtub, they will find nothing in it. This is a useless clue.
                         case "bathtub": 
                             Bathroom.Bathtub();
                             System.out.println();
                             break;
-                         //When user checks the mirror, call the Mirror method from the bathroom class
+                        //When user checks the mirror, the prompt will ask whether they want to fog the mirror for further clue. This is another useless clue.
                         case "mirror":
                             Bathroom.Mirror();
+                            //further clues
                             System.out.println(
                                     "->You remembered fog can make some stain more obvious. Do you want to fog the room by turning on hot water? (yes/no)");
-                            String decision_mirror = user_input.nextLine();
+                            String decision_mirror = user_input.nextLine().toLowerCase();
                             if (decision_mirror.equals("yes")) {
                                 System.out.println(
                                         "->Words appeared on the mirror: Don't lose track of time. Find the key.");
                                 System.out.println();
                             }
                             break;
-                        //When user checks the closet, call the Closet method from the bathroom class
+                        //When user checks the closet, they will discover a bag that allow the user to pick up things. 
                         case "closet": 
                             Bathroom.Closet();
-                            if (Bathroom.Bag_in_closet) {
+                            if (Bathroom.Bag_in_closet) {//The prompt will ask them whether they will want to pick it up. The prompt will only shows up when the bag is still inside the closet.
                                 System.out.println("->Do you want to carry it? (yes/no)");
-                                String decision_bag = user_input.nextLine();
+                                String decision_bag = user_input.nextLine().toLowerCase();
                                 if (decision_bag.equals("yes")) {
-                                    person.setHaveBag(true);
+                                    person.setHaveBag(true);//once the player collects the bag inside the closet, they can pick up other objects
                                     System.out.println();
                                     Bathroom.setBag_in_closet(false);
                                 } else if (decision_bag.equals("no")) {
                                     System.out.println("->Okay.");
                                     System.out.println();
-                                } else {
+                                } else {//When the user inputs unexpected message, print a default invalid input message.
                                     InvalidInput();
                                     System.out.println();
                                 }
                             }
                             break;
-                        //When user checks the shelves, call the Shelves method from the bathroom class
+                        //When user checks the shelves, the shelves contains a shovel, a towel and a small plant.
                         case "shelves": 
-                            if (person.haveKey) {
-                                Bathroom.Shelves();
-                            } else {
-                                Bathroom.Shelves();
+                            Bathroom.Shelves();
+                            if (!person.haveKey) {//if the user do not have the key yet, prompt will ask them if they want to dig up the plant to get the key.
                                 System.out.println(
                                         "->Do you want to use the shovel to dig the plant and see what will happen? (yes/no)");
-                                String decision_shovel = user_input.nextLine();
+                                String decision_shovel = user_input.nextLine().toLowerCase();
                                 if (decision_shovel.equals("yes")) {
                                     person.setHaveKey(true);
-                                    System.out.println("->Do you want to use them or not? (yes/no)");
-                                    String decision_key = user_input.nextLine();
+                                    System.out.println("->Do you want to use them or not? (yes/no)");//a further prompt ask them whether they want to unlock the door
+                                    String decision_key = user_input.nextLine().toLowerCase();
                                     if (decision_key.equals("yes")) {
                                         bedroom.unlock(key);
                                         exitPrompt();
-                                        String exit_decision = user_input.nextLine();
+                                        String exit_decision = user_input.nextLine().toLowerCase();
                                         if (exit_decision.equals("exit the room")) {
-                                            person.enter(1);
+                                            person.enter(1);//the user enter position 1, which is the bathroom
                                             stillSearching = false;
                                         } else if (exit_decision.equals("check other things in the room")) {
-                                            stillSearching = true;
+                                            stillSearching = true;//allow users to keep checking other things in the room
                                         }
-                                    } else if (decision_key.equals("no")) {
+                                    } else if (decision_key.equals("no")) {//if the user do not use the key at that moment, they are stuck and lose the game.
                                         System.out.println(
                                                 "->You were stuck in the room and couldn't unlock to go outside. Mission failed.");
-                                        System.exit(0);
-                                    } else {
+                                        goodbye();
+                                    } else {//When the user inputs unexpected message, print a default invalid input message.
                                         InvalidInput();
                                         System.out.println();
                                     }
                                 } else if (decision_shovel.equals("no")) {
                                     System.out.println("->Okay.");
                                     System.out.println();
-                                } else {
+                                } else {//When the user inputs unexpected message, print a default invalid input message.
                                     InvalidInput();
                                     System.out.println();
                                 }
                             }
                             break;
-                        //When user inputs unlock, call the haveKey method from Character class to check if the person has the key and print out following message. 
+                        //When user inputs unlock, the door will unlock only if they found the key. 
                         case "unlock":  
                             if (person.haveKey) {
-                                System.out.println("->You unlocked the door.");
-                                person.enter(1);
+                                Bathroom.unlock(key);
+                                person.enter(1);//the user enter position 1, which is the bathroom
                                 stillSearching = false;
                             } else {
                                 System.out.println("->The bathroom is locked. Try to find a key inside this room.");
@@ -249,10 +234,9 @@ public class GameLoop {
                             break;
                         //When the user inputs quit, print out the message to end the game
                         case "quit":
-                            System.out.println("->Thank you for playing, bye!");
-                            System.exit(0);
+                            goodbye();
                             break;
-                        //When the user inputs unexpected message, call the InvalidInput() method. 
+                        //When the user inputs unexpected message, print a default invalid input message.
                         default:
                             InvalidInput();
                             System.out.println();
@@ -260,89 +244,78 @@ public class GameLoop {
                     }
                 }
                 // Bedroom
-                while (person.position == 1) {
-                    // when position equals 1, the character is in bedroom
-                    System.out.println("=======================================================");
+                while (person.position == 1) {// when position equals 1, the character is in bedroom
                     System.out.println(
                             "You have unlocked the bedroom! Type 'Bathroom' if you want to go back to bathroom. Hit enter to continue!");
                     String bathroom_name1 = user_input.nextLine();
                     if (bathroom_name1.equals("Bathroom")) {
                         person.enter(0);
                     } else {// start searching in bedroom
+                        System.out.println("=======================================================");
                         System.out.println(
                             "You saw there is a lock on the door. You can either input letters or numbers to the lock, and it requires six digits. ");
                         System.out.println(bedroom);
-                        bedroom.examine();
                         stillSearching = true;
-                        int count = 3;
+                        int count = 3;//initialize a counter to keep track of the times that the user have left to try inputting passcode
                         while (stillSearching && count > 0) {
                             //stillSearching keep the user in this loop. Set the maximum times the user can try the code.
                             welcomeMessage("bedroom");
                             bedroom.examine();
                             System.out.println();
-                            // no limit for the form of user's input
                             String object = user_input.nextLine().toLowerCase();
                             if (object.equals("go back")){//see if the user want to go back to the opened rooms
                                 break;
                             }
-                            // Check Objects in the room depend on user's input
+                            // Check objects in the bedroom depending on user's input
                             switch(object){
                             case "bed":
-                            //When user checks the bed, call the Bed method from the Bedroom class
+                            //When user checks the bed, they will find nothing in it. This is a useless clue.
                                 bedroom.Bed();
                                 System.out.println();
                                 break;
-                             //When user checks the closet, call the Closet method from the Bedroom class
+                             //When user checks the closet, closet will have three hangers representing the clue '3'.
                             case "closet":
                                 bedroom.Closet();
                                 System.out.println();
                                 break;
-                            //When user checks the drawers, call the Drawers method from the Bedroom class
+                            //When user checks the drawers, drawers will have a note representing the clue 'YDH'.
                             case "drawers":
                                 bedroom.Drawers();
                                 System.out.println();
                                 break;
-                            //When user checks the curtain, call the Curtains method from the Bedroom class
+                            //When user checks the curtain, curatain will display a note representing the clue '58'.
                             case "curtain":
                                 bedroom.Curtains();
                                 System.out.println();
                                 break;
-                            //When user checks the lamp, check the user input to see if they want to turn on or off the lamp, and call the turn_on_lamp method and turn_off_lamp method from the Bedroom class accordingly. 
+                            //When user checks the lamp, the lamp could be turned on or off based on user's input and display a message revealing the order of the passcode.
                             case "lamp":
                                 System.out.println("->Input (On/Off) to change the status of the lamp");
                                 String OnOff = user_input.nextLine().toLowerCase();
-                                if (OnOff.equals("on")) {
-                                    bedroom.turn_on_lamp();
-                                } else if (OnOff.equals("off")) {
-                                    bedroom.turn_off_lamp();
-                                } else {
-                                    InvalidInput();
-                                    System.out.println();
-                                }
+                                bedroom.lamp(OnOff);
                                 break;
-                            //When user inputs unlock, call the unlock method from livingroom class to check if the user inputs the correct passcode.     
+                            //When user inputs unlock, the door will only unlock if the passcode is correct.
                             case "unlock":
                                 System.out.println("->Input the passcode");
-                                // Scanner password = new Scanner(System.in);
-                                String passcode = user_input.nextLine();
+                                String passcode = user_input.nextLine();//case sensitive because the passcode uses capitalized letters
                                 // if passcode is correct
                                 if (livingroom.unlock(passcode)) {
                                     exitPrompt();
-                                    String exit_decision = user_input.nextLine();
+                                    String exit_decision = user_input.nextLine().toLowerCase();
                                     if (exit_decision.equals("exit the room")) {
-                                        person.enter(2);
+                                        person.enter(2);//user's position changes to 2, which is the living room
                                         stillSearching = false;
                                     } else if (exit_decision.equals("check other things in the room")) {
                                         stillSearching = true;
                                     }
-                                } else {
+                                }else {
                                     System.out.println("->Unlock failed!");
                                     stillSearching = true;
-                                    count = count - 1;
+                                    count -= 1;
                                     System.out.println("->You have " + count + " more tries!");
                                 }
                                 break;
-                             //When the user inputs help, print out the instruction to guide the user to the next step of the game
+                            //When the user inputs help, print out the instruction to guide the user to the next step of the game
                             case "help":
                                 System.out.println(
                                         "->Type a name of the item in the room to start searching. For example, type 'closet'.");
@@ -350,10 +323,9 @@ public class GameLoop {
                                 break;
                             //When the user inputs quit, print out the message to end the game
                             case "quit":
-                                System.out.println("->Thank you for playing, bye!");
-                                System.exit(0);
+                                goodbye();
                                 break;
-                             //When the user inputs unexpected message, call the InvalidInput() method. 
+                            //When the user inputs unexpected message, prints a defualt invalid input message 
                             default:
                                 InvalidInput();
                                 System.out.println();
@@ -361,7 +333,7 @@ public class GameLoop {
                         }
                         if (count == 0) {// Ran out of unlock attempts
                             System.out.println("->You ran out of tries! You are locked in the room!");
-                            System.exit(0);
+                            goodbye();
                         }
                     }
                 }
@@ -370,7 +342,6 @@ public class GameLoop {
                 while (person.position == 2) {
                     // when position equals 2, the character is in Living
                     stillSearching = true;
-                    // Scanner twoRooms_scanner = new Scanner(System.in);
                     
                     System.out.println(
                             "You have unlocked bathroom and bedroom! Type 'Bathroom' or 'Bedroom' if you want to go back to one of the rooms. Hit enter to continue!");
@@ -388,10 +359,9 @@ public class GameLoop {
                         System.out.println(livingroom);
                         livingroom.examine();
 
-                        int attempt = 3;// counter for the max amount of unlock attempts
+                        int attempt = 3;// initialize counter for the max amount of unlock attempts
                         while (stillSearching && attempt > 0) {
                             if (stillSearching) {
-                                // Scanner LR_scanner = new Scanner(System.in);
                                 welcomeMessage("living room");
                                 livingroom.examine();
                                 System.out.println();
@@ -400,12 +370,12 @@ public class GameLoop {
                                     break;
                                 }
                                 switch(object){
-                                //When user checks the sofa, call the checksofa method from the Livingroom class and use the candle_status method from living room to check if the user already has the candle
+                                //When user checks the sofa, they will find a candle and be asked whether they would like to pick it up.
                                 case "sofa":
                                     livingroom.checkSofa();
                                     if(livingroom.candle_status){
                                         System.out.println("->Do you want to pick it up? (yes/no)");
-                                        String decision_candle = user_input.nextLine();
+                                        String decision_candle = user_input.nextLine().toLowerCase();
                                         if (decision_candle.equals("yes")) {
                                             person.pickup("candle");
                                             if (person.haveItem("candle")){
@@ -417,20 +387,18 @@ public class GameLoop {
                                         } else if (decision_candle.equals("no")) {
                                             System.out.println("->Okay.");
                                             System.out.println();
-                                        } else {
+                                        } else {//When the user inputs unexpected message, print a default invalid input message.
                                             InvalidInput();
                                             System.out.println();
                                         }
-                                    } else{
-                                        break;
                                     }
                                     break;
-                                  //When user checks the carpet, call the checkCarpet method from the Livingroom class and call the pickup medthod from character if the user wants to pick up the key chain
+                                //When user checks the carpet, they will find a set of keychains for the car and be asked whether they would like to pick it up.
                                 case "carpet":
                                     livingroom.checkCarpet();
                                     if(livingroom.keychain_status){
                                         System.out.println("->Do you want to pick it up? (yes/no)");
-                                        String decision_keychains = user_input.nextLine();
+                                        String decision_keychains = user_input.nextLine().toLowerCase();
                                         if (decision_keychains.equals("yes")) {
                                             person.pickup("key chains");
                                             if (person.haveItem("key chains")){
@@ -444,59 +412,56 @@ public class GameLoop {
                                         } else if (decision_keychains.equals("no")) {
                                             System.out.println("->Okay.");
                                             System.out.println();
-                                        } else {
+                                        } else {//When the user inputs unexpected message, print a default invalid input message.
                                             InvalidInput();
                                             System.out.println();
                                         }
-                                    }else{
-                                        break;
                                     }
                                     break;
 
-                                //When user checks the fireplace, call the checkFireplace method from the Livingroom class
+                                //When user checks the fireplace, they will find a message from the ashes about the clues to unlock the front door.
                                 case "fire place":
                                     livingroom.checkFireplace();
                                     System.out.println();
                                     break;
-                                //When user checks the floor lamp, call the Floorlamp method from the Livingroom class
+                                //When user checks the floor lamp, it does not light up but it will turn on the fire place.
                                 case "floor lamp":
                                     livingroom.Floorlamp();
                                     System.out.println(
                                             "->What do you want to do next? (burn the candle/shut off the fireplace)");
-                                    // Scanner Floorlamp_Scanner = new Scanner(System.in);
-                                    String decision_floorlamp = user_input.nextLine();
+                                    String decision_floorlamp = user_input.nextLine().toLowerCase();
                                     if (decision_floorlamp.equals("burn the candle")) {
                                         person.burnCandle();
                                         System.out.println();
                                     } else if (decision_floorlamp.equals("shut off the fireplace")) {
                                         livingroom.ShutOffFireplace();
                                         System.out.println();
-                                    } else {
+                                    } else {//When the user inputs unexpected message, print a default invalid input message.
                                         InvalidInput();
                                         System.out.println();
                                     }
                                     break;
-                                 //When user checks the tv, call the tv method from the Livingroom class
+                                //When user checks the tv, the tv will be playing their favroite show and will be asked whether they would like to switch a channel or turn off the tv.
                                 case "tv":
-                                    livingroom.TurnOnTV();
-                                    String decision_TV = user_input.nextLine();
-                                    if (decision_TV.equals("yes")) {
+                                    livingroom.turnOnOff_TV("on");
+                                    String decision_TV = user_input.nextLine().toLowerCase();
+                                    if (decision_TV.equals("yes")) {//game ends if user keep on watching the tv
                                         System.out.println("->You wasted too long binge watching TV, Mission Failed!");
-                                        System.exit(0);
+                                        goodbye();
                                     } else if (decision_TV.equals("switch a channel")) {
-                                        spyTalk();
+                                        livingroom.switchChannel();
                                         System.out.println();
 
                                     } else if (decision_TV.equals("stop watching and turn off tv")) {
-                                        livingroom.TurnOffTV();
+                                        livingroom.turnOnOff_TV("off");
                                         System.out.println();
                                         stillSearching = true;
-                                    }else{
+                                    }else{//When the user inputs unexpected message, print a default invalid input message.
                                         InvalidInput();
                                         System.out.println();
                                     }
                                     break;
-                                //When user inputs unlock, call the getlocked method from livingroom class to check if the user inputs the correct passcode and call the haveItem from Character class to check if the user has the keychain or not     
+                                //When user inputs unlock, it will prompt the user to input the passcode
                                 case "unlock":
                                     System.out.println("->Input the passcode");
                                     String passcode = user_input.nextLine();
@@ -504,22 +469,22 @@ public class GameLoop {
 
                                     // Outside the house, position equals 3
                                     person.position = 3;
+                                    //once they unlock the house, it prompt the user to select the right car key.
                                     if (!livingroom.getlocked_house()) {
                                         System.out.println(
                                                 "In front of the house, there is a Porsche car waiting for you.");
-                                        if (person.haveItem("key chains")) {
+                                        if (person.haveItem("key chains")) {//only prompt the user to identify the car key if they picked it up from the living room
                                             System.out.println("->Which car key is the right one?");
-                                            // Scanner Car_Scanner = new Scanner(System.in);
-                                            String decision_car = user_input.nextLine();
+                                            String decision_car = user_input.nextLine();//case sensitive because the carkey is capitalized
                                             if (decision_car.equals("E")) {
                                                 System.out.println(
                                                         "->You used the car key to drive to the court, successfully identified the suspect. Mission Complete! Thank you for your hard work!");
-                                                System.exit(0);
-                                            } else {
+                                                goodbye();
+                                            } else {//if the user unsuccessfully identified the car key, the game fails.
                                                 System.out.println(
                                                         "->Unfortunately, you didn't have to car key to drive to court. You walked for an hour and you missed the court session. Mission Failed.");
                                                 stillSearching = false;
-                                                System.exit(0);
+                                                goodbye();
                                             }
                                         } else {
                                             System.out.println("->You don't have a key to drive the car.");
@@ -539,10 +504,9 @@ public class GameLoop {
                                     break;
                                  //When the user inputs quit, print out the message to end the game
                                 case "quit":
-                                    System.out.println("->Thank you for playing, bye!");
-                                    System.exit(0);
+                                    goodbye();
                                     break;
-                                 //When the user inputs unexpected message, call the InvalidInput() method. 
+                                //When the user inputs unexpected message, print a default invalid input message.
                                 default:
                                     InvalidInput();
                                     System.out.println();
@@ -551,7 +515,7 @@ public class GameLoop {
                         }
                         if (attempt == 0) {// Ran out of unlock attempts
                             System.out.println("You run out of tries! You are locked in the room!");
-                            System.exit(0);
+                            goodbye();
                         }
 
                     }
