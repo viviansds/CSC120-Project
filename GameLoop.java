@@ -467,10 +467,9 @@ public class GameLoop {
                                     String passcode = user_input.nextLine();
                                     livingroom.exitHouse(passcode);
 
-                                    // Outside the house, position equals 3
-                                    person.position = 3;
                                     //once they unlock the house, it prompt the user to select the right car key.
                                     if (!livingroom.getlocked_house()) {
+                                        person.position = 3;// Outside the house, position equals 3
                                         System.out.println(
                                                 "In front of the house, there is a Porsche car waiting for you.");
                                         if (person.haveItem("key chains")) {//only prompt the user to identify the car key if they picked it up from the living room
