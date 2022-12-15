@@ -17,12 +17,11 @@ All the rooms inside the house are locked and it is your job to use the clues ar
 Good Luck!
 
 >This Bathroom needs a key to exit.  
-This bedroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]  
 Which object do you wanna check?  
-This bedroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]  
 Type 'unlock' if you are ready to try to use the key!  
 Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.
+Type 'quit' if you want to end the game.  
+This bathroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]  
 
 **User Input**  
 Closet  
@@ -35,11 +34,11 @@ Closet
 yes
 
 **Command**  
->Which object do you wanna check?
-This bedroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]  
+>Which object do you wanna check?  
 Type 'unlock' if you are ready to try to use the key!  
 Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.
+Type 'quit' if you want to end the game.  
+This bathroom contains[Toilet, Bathtub, Shelves, Mirror, Closet]  
 
 **User Input**   
 Shelves
@@ -82,10 +81,11 @@ This Bedroom needs a passcode to exit.
 This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]
 
 >Which object do you wanna check?  
-This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]  
 Type 'unlock' if you are ready to try to use the key!  
 Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.
+Type 'go back' if you want to go to a previous room  
+Type 'quit' if you want to end the game.   
+This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]  
 
 **User Input**   
 Closet
@@ -94,10 +94,11 @@ Closet
 >->There are three hangers in the closet. 
 
 >Which object do you wanna check?  
-This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room   
+Type 'quit' if you want to end the game.  
+This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]
 
 **User Input**   
 Curtain
@@ -105,11 +106,12 @@ Curtain
 **Command**  
 >->You opened the curtain and you saw two red numbers '5' '8' written on the window.  
 
->Which object do you wanna check?  
-This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]  
+>Which object do you wanna check?   
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
+Type 'help' if you need additional tip to proceed.
+Type 'go back' if you want to go to a previous room   
 Type 'quit' if you want to end the game.   
+This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]
 
 **User Input**  
 Drawers
@@ -120,8 +122,10 @@ Drawers
 >Which object do you wanna check?  
 This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.   
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room  
+Type 'quit' if you want to end the game.     
+This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]
 
 **User Input**  
 Lamp  
@@ -138,8 +142,10 @@ On
 >Which object do you wanna check?  
 This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.  
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room  
+Type 'quit' if you want to end the game.     
+This bedroom contains[Bed, Closet, Drawers, Curtain, Lamp]
 
 **User Input**  
 unlock
@@ -160,7 +166,7 @@ exit the room
 
 **Command**   
 >->You are now inside the living room  
-You have unlocked bathroom and bedroom!     
+You have unlocked bathroom and bedroom!       
 Type 'Bathroom' or 'Bedroom' if you want to go back to one of the rooms. Hit enter to continue!
 
 **User Input**   
@@ -173,10 +179,11 @@ This Living Room needs a entry_code to exit.
 This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
 
 >Which object do you wanna check?  
-This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game.  
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room   
+Type 'quit' if you want to end the game.    
+This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
 
 **User Input**  
 Sofa
@@ -193,10 +200,11 @@ yes
 [candle]  
 
 >Which object do you wanna check?  
-This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game. 
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room   
+Type 'quit' if you want to end the game.    
+This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp] 
 
 **User Input**  
 Carpet
@@ -213,10 +221,11 @@ yes
 [candle, key chains]  
 
 >Which object do you wanna check?  
-This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game. 
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room   
+Type 'quit' if you want to end the game.    
+This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp] 
 
 **User Input** 
 Fire Place  
@@ -226,11 +235,12 @@ Fire Place
  \__  &nbsp;&nbsp;&nbsp; \__   &nbsp;&nbsp; \__  &nbsp; &nbsp;    \__  
  \__| &nbsp; &nbsp;|__ &nbsp; |__|  &nbsp; \|\_\_
 
-Which object do you wanna check?  
-This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp]  
+>Which object do you wanna check?  
 Type 'unlock' if you are ready to try to use the key!  
-Type 'help' if you need additional tip to proceed.  
-Type 'quit' if you want to end the game. 
+Type 'help' if you need additional tip to proceed. 
+Type 'go back' if you want to go to a previous room   
+Type 'quit' if you want to end the game.    
+This living room contains[Sofa, Carpet, Fire place, TV, Floor lamp] 
 
 **User Input**   
 Floor lamp

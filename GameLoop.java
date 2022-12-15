@@ -149,14 +149,17 @@ public class GameLoop {
                         }
                         // Check Objects in the room depend on user's input
                         switch (object){
-                        case "toilet":
+                        //When user checks the toilet, call the Toilet method from the bathroom class
+                        case "toilet": 
                             Bathroom.Toilet();
                             System.out.println();
                             break;
-                        case "bathtub":
+                        //When user checks the bathtub, call the Bathtub method from the bathroom class
+                        case "bathtub": 
                             Bathroom.Bathtub();
                             System.out.println();
                             break;
+                         //When user checks the mirror, call the Mirror method from the bathroom class
                         case "mirror":
                             Bathroom.Mirror();
                             System.out.println(
@@ -168,7 +171,8 @@ public class GameLoop {
                                 System.out.println();
                             }
                             break;
-                        case "closet":
+                        //When user checks the closet, call the Closet method from the bathroom class
+                        case "closet": 
                             Bathroom.Closet();
                             if (Bathroom.Bag_in_closet) {
                                 System.out.println("->Do you want to carry it? (yes/no)");
@@ -186,7 +190,8 @@ public class GameLoop {
                                 }
                             }
                             break;
-                        case "shelves":
+                        //When user checks the shelves, call the Shelves method from the bathroom class
+                        case "shelves": 
                             if (person.haveKey) {
                                 Bathroom.Shelves();
                             } else {
@@ -225,7 +230,8 @@ public class GameLoop {
                                 }
                             }
                             break;
-                        case "unlock":
+                        //When user inputs unlock, call the haveKey method from Character class to check if the person has the key and print out following message. 
+                        case "unlock":  
                             if (person.haveKey) {
                                 System.out.println("->You unlocked the door.");
                                 person.enter(1);
@@ -235,15 +241,18 @@ public class GameLoop {
                                 System.out.println();
                             }
                             break;
+                        //When the user inputs help, print out the instruction to guide the user to the next step of the game
                         case "help":
                             System.out.println(
                                     "->Type a name of the item in the room to start searching. For example, type 'closet'.");
                             System.out.println();
                             break;
+                        //When the user inputs quit, print out the message to end the game
                         case "quit":
                             System.out.println("->Thank you for playing, bye!");
                             System.exit(0);
                             break;
+                        //When the user inputs unexpected message, call the InvalidInput() method. 
                         default:
                             InvalidInput();
                             System.out.println();
@@ -279,24 +288,26 @@ public class GameLoop {
                             // Check Objects in the room depend on user's input
                             switch(object){
                             case "bed":
+                            //When user checks the bed, call the Bed method from the Bedroom class
                                 bedroom.Bed();
                                 System.out.println();
                                 break;
-
+                             //When user checks the closet, call the Closet method from the Bedroom class
                             case "closet":
                                 bedroom.Closet();
                                 System.out.println();
                                 break;
-
+                            //When user checks the drawers, call the Drawers method from the Bedroom class
                             case "drawers":
                                 bedroom.Drawers();
                                 System.out.println();
                                 break;
-
+                            //When user checks the curtain, call the Curtains method from the Bedroom class
                             case "curtain":
                                 bedroom.Curtains();
                                 System.out.println();
                                 break;
+                            //When user checks the lamp, check the user input to see if they want to turn on or off the lamp, and call the turn_on_lamp method and turn_off_lamp method from the Bedroom class accordingly. 
                             case "lamp":
                                 System.out.println("->Input (On/Off) to change the status of the lamp");
                                 String OnOff = user_input.nextLine().toLowerCase();
@@ -309,6 +320,7 @@ public class GameLoop {
                                     System.out.println();
                                 }
                                 break;
+                            //When user inputs unlock, call the unlock method from livingroom class to check if the user inputs the correct passcode.     
                             case "unlock":
                                 System.out.println("->Input the passcode");
                                 // Scanner password = new Scanner(System.in);
@@ -330,15 +342,18 @@ public class GameLoop {
                                     System.out.println("->You have " + count + " more tries!");
                                 }
                                 break;
+                             //When the user inputs help, print out the instruction to guide the user to the next step of the game
                             case "help":
                                 System.out.println(
                                         "->Type a name of the item in the room to start searching. For example, type 'closet'.");
                                 System.out.println();
                                 break;
+                            //When the user inputs quit, print out the message to end the game
                             case "quit":
                                 System.out.println("->Thank you for playing, bye!");
                                 System.exit(0);
                                 break;
+                             //When the user inputs unexpected message, call the InvalidInput() method. 
                             default:
                                 InvalidInput();
                                 System.out.println();
@@ -385,6 +400,7 @@ public class GameLoop {
                                     break;
                                 }
                                 switch(object){
+                                //When user checks the sofa, call the checksofa method from the Livingroom class and use the candle_status method from living room to check if the user already has the candle
                                 case "sofa":
                                     livingroom.checkSofa();
                                     if(livingroom.candle_status){
@@ -409,6 +425,7 @@ public class GameLoop {
                                         break;
                                     }
                                     break;
+                                  //When user checks the carpet, call the checkCarpet method from the Livingroom class and call the pickup medthod from character if the user wants to pick up the key chain
                                 case "carpet":
                                     livingroom.checkCarpet();
                                     if(livingroom.keychain_status){
@@ -436,11 +453,12 @@ public class GameLoop {
                                     }
                                     break;
 
+                                //When user checks the fireplace, call the checkFireplace method from the Livingroom class
                                 case "fire place":
                                     livingroom.checkFireplace();
                                     System.out.println();
                                     break;
-
+                                //When user checks the floor lamp, call the Floorlamp method from the Livingroom class
                                 case "floor lamp":
                                     livingroom.Floorlamp();
                                     System.out.println(
@@ -458,6 +476,7 @@ public class GameLoop {
                                         System.out.println();
                                     }
                                     break;
+                                 //When user checks the tv, call the tv method from the Livingroom class
                                 case "tv":
                                     livingroom.TurnOnTV();
                                     String decision_TV = user_input.nextLine();
@@ -477,6 +496,7 @@ public class GameLoop {
                                         System.out.println();
                                     }
                                     break;
+                                //When user inputs unlock, call the getlocked method from livingroom class to check if the user inputs the correct passcode and call the haveItem from Character class to check if the user has the keychain or not     
                                 case "unlock":
                                     System.out.println("->Input the passcode");
                                     String passcode = user_input.nextLine();
@@ -511,15 +531,18 @@ public class GameLoop {
                                         System.out.println("->You have " + attempt + " more tries!");
                                     }
                                     break;
+                                //When the user inputs help, print out the instruction to guide the user to the next step of the game
                                 case "help":
                                     System.out.println(
                                             "->Type a name of the item in the room to start searching. For example, type 'sofa'.");
                                     System.out.println();
                                     break;
+                                 //When the user inputs quit, print out the message to end the game
                                 case "quit":
                                     System.out.println("->Thank you for playing, bye!");
                                     System.exit(0);
                                     break;
+                                 //When the user inputs unexpected message, call the InvalidInput() method. 
                                 default:
                                     InvalidInput();
                                     System.out.println();
