@@ -25,28 +25,28 @@ public class Bedroom extends Room{
     /*
      * print nothing is on the bed
      */
-    public void Bed(){
+    public void checkBed(){
         System.out.println("->Nothing found here!");
     }
 
     /*
      * print what are in the closet
      */
-    public void Closet(){
+    public void checkCloset(){
         System.out.println("->There are three hangers in the closet. ");
     }
 
     /*
      * print what is in the drawer
      */
-    public void Drawers(){
+    public void checkDrawers(){
         System.out.println("->You found a sticky note that reads 'You can Do tHis'.");
     }
 
     /*
      * print the clues in the curtains
      */
-    public void Curtains(){
+    public void checkCurtains(){
         System.out.println("->You opened the curtain and you saw two red numbers '5' '8' written on the window. ");
     }
 

@@ -32,7 +32,7 @@ public class Bathroom extends Room {
     /*
      * print nothing is found in the tiolet
      */
-    public void Toilet(){
+    public void checkToilet(){
         System.out.println("->Nothing found in Toilet.");
         System.out.println();
     }
@@ -40,7 +40,7 @@ public class Bathroom extends Room {
     /*
      * print what is in the bathtub
      */
-    public void Bathtub(){
+    public void checkBathtub(){
         System.out.println("->The bathtub was full of red water with nothing else.");
         System.out.println();
     }
@@ -48,7 +48,7 @@ public class Bathroom extends Room {
     /*
      * print what are on the shelves
      */
-    public void Shelves(){
+    public void checkShelves(){
         System.out.println("->You found a plant, a mini shovel, and a towel.");
         System.out.println();
     }
@@ -56,7 +56,7 @@ public class Bathroom extends Room {
     /*
      * print what is on the mirror
      */
-    public void Mirror(){
+    public void checkMirror(){
         System.out.println("->The mirror was not very clean, you could vaguely see some marks on it.");
         System.out.println();
     }
@@ -65,7 +65,7 @@ public class Bathroom extends Room {
      * print what is found in the closet
      * the result is depend on whether the bag has already been picked up before
      */
-    public void Closet(){
+    public void checkCloset(){
         if(Bag_in_closet){
             System.out.println("->You found an empty bag in the closet.");
         } else {

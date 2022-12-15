@@ -137,17 +137,17 @@ public class GameLoop {
                         switch (object){
                         //When user checks the toilet, they will find nothing in it. This is a useless clue.
                         case "toilet": 
-                            Bathroom.Toilet();
+                            Bathroom.checkToilet();
                             System.out.println();
                             break;
                         //When user checks the bathtub, they will find nothing in it. This is a useless clue.
                         case "bathtub": 
-                            Bathroom.Bathtub();
+                            Bathroom.checkBathtub();
                             System.out.println();
                             break;
                         //When user checks the mirror, the prompt will ask whether they want to fog the mirror for further clue. This is another useless clue.
                         case "mirror":
-                            Bathroom.Mirror();
+                            Bathroom.checkMirror();
                             //further clues
                             System.out.println(
                                     "->You remembered fog can make some stain more obvious. Do you want to fog the room by turning on hot water? (yes/no)");
@@ -160,7 +160,7 @@ public class GameLoop {
                             break;
                         //When user checks the closet, they will discover a bag that allow the user to pick up things. 
                         case "closet": 
-                            Bathroom.Closet();
+                            Bathroom.checkCloset();
                             if (Bathroom.Bag_in_closet) {//The prompt will ask them whether they will want to pick it up. The prompt will only shows up when the bag is still inside the closet.
                                 System.out.println("->Do you want to carry it? (yes/no)");
                                 String decision_bag = user_input.nextLine().toLowerCase();
@@ -179,7 +179,7 @@ public class GameLoop {
                             break;
                         //When user checks the shelves, the shelves contains a shovel, a towel and a small plant.
                         case "shelves": 
-                            Bathroom.Shelves();
+                            Bathroom.checkShelves();
                             if (!person.haveKey) {//if the user do not have the key yet, prompt will ask them if they want to dig up the plant to get the key.
                                 System.out.println(
                                         "->Do you want to use the shovel to dig the plant and see what will happen? (yes/no)");
@@ -270,22 +270,22 @@ public class GameLoop {
                             switch(object){
                             case "bed":
                             //When user checks the bed, they will find nothing in it. This is a useless clue.
-                                bedroom.Bed();
+                                bedroom.checkBed();
                                 System.out.println();
                                 break;
                              //When user checks the closet, closet will have three hangers representing the clue '3'.
                             case "closet":
-                                bedroom.Closet();
+                                bedroom.checkCloset();
                                 System.out.println();
                                 break;
                             //When user checks the drawers, drawers will have a note representing the clue 'YDH'.
                             case "drawers":
-                                bedroom.Drawers();
+                                bedroom.checkDrawers();
                                 System.out.println();
                                 break;
                             //When user checks the curtain, curatain will display a note representing the clue '58'.
                             case "curtain":
-                                bedroom.Curtains();
+                                bedroom.checkCurtains();
                                 System.out.println();
                                 break;
                             //When user checks the lamp, the lamp could be turned on or off based on user's input and display a message revealing the order of the passcode.
