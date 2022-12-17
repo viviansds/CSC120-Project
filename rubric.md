@@ -33,16 +33,16 @@ ___2__ 2 pts: Executes fully & consistently without crashing (exception/freeze).
 
 ___2__ 2 pt: Complies with style guidelines (missing items 1 pt each):
 
-      _____ Classes & class members all have Javadoc header comments.
+      ___yes__ Classes & class members all have Javadoc header comments.
 
-      _____ Clear and consistent indentation of bracketed sections.
+      ___yes__ Clear and consistent indentation of bracketed sections.
 
-      _____ Adheres to Java conventions on naming & capitalization.
+      ___yes__ Adheres to Java conventions on naming & capitalization.
 
-      _____ Methods & variables all have clear and accurate names.
+      ___yes__ Methods & variables all have clear and accurate names.
 
-      _____ Methods avoid confusing side effects.
+      ___yes__ Methods avoid confusing side effects.
 
-_____ 1 pt: All required files included with submission (including completed checklist file).
+___1__ 1 pt: All required files included with submission (including completed checklist file).
 
-_____ 1 pt: `readme.md` contains your reflection on the project and responses to all prompts .
+___1__ 1 pt: `readme.md` contains your reflection on the project and responses to all prompts .

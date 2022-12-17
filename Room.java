@@ -47,7 +47,7 @@ public class Room {
      * Accessor for entry_method
      * @return this.entry_method in order to unlock the room
      */
-    public String getEntry_method(){
+     public String getEntry_method(){
         return this.entry_method;
     }
 
@@ -59,7 +59,7 @@ public class Room {
     }
 
     /*
-     * unlock the door
+     * unlock the door if the input unlock_method is the same as the entry method of the room
      * @param unlock_method 
      * @return unlock
      */
@@ -72,11 +72,10 @@ public class Room {
                     unlock = true;
                 }
         }else{
-        //     System.out.println("->The door is unlocked");
             unlock = true;
         }return unlock;
     }
-
+    //Main for testing 
     public static void main(String[] args) {
     Room demo= new Room("Bedroom",true,"key");
     System.out.println(demo);
