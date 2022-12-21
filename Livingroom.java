@@ -141,34 +141,25 @@ public class Livingroom extends Room{
     */
     public boolean turnOnOff_TV(String OnOff){
         if (OnOff.equals("on")){
-            if (!tv_status){//only turns on tv when lamp_status is false
+            if(!tv_status){//only turns on tv when tv_status is false
                 System.out.println("->You turned on the TV. It was playing your favorite show on Netflix. Do you want to keep watching it? (yes/switch a channel/stop watching and turn off tv)");
                 tv_status = true;
-            }else{
-                System.out.println("->The tv is already on!");
             }
         }else if (OnOff.equals("off")){
-            if(!tv_status){//only turns off lamp when lamp_status is true
-                System.out.println("->You turned off the tv");
-                tv_status = false;
-            }else{
-                System.out.println("->The tv is already off");
-            }
+            System.out.println("->You turned off the tv");
+            tv_status=false;
         }return tv_status;
     }
     public void switchChannel(){
         System.out.println(
-                        "---------------------------------------------------------------------------------");
-        System.out.println(
-                        "Hello Secret Agent, my name is Yosef D. Harrison. By the time you reached this point of the gane, you are almost there. I have been a spy in this criminal gang C.Crew for 8 years unde the code name 35.");
+                        "The TV appeared a men, he started talking: 'Hello Secret Agent, my name is Yosef D. Harrison. By the time you reached this point of the gane, you are almost there. I have been a spy in this criminal gang C.Crew for 8 years unde the code name 35.");
         System.out.println(
                         "My job is to help secret agent like you to get out. I have a strong confidence that you can escape this trap and you will uphold the justice that we always wanted for the world.");
         System.out.println(
                         "Outside the house, I have prepared you a car to be in court in time. This house is quite far, you won't be able to get to the court without a car under an hour.");
         System.out.println(
-                        "Time's running out. We'll meet each other in the bright future.");
-        System.out.println(
-                        "---------------------------------------------------------------------------------");
+                        "Time's running out. We'll meet each other in the bright future.'");
+        tv_status=false;
     }
 }
 
