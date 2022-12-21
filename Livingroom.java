@@ -159,7 +159,7 @@ public class Livingroom extends Room{
                         "Outside the house, I have prepared you a car to be in court in time. This house is quite far, you won't be able to get to the court without a car under an hour.");
         System.out.println(
                         "Time's running out. We'll meet each other in the bright future.'");
-        tv_status=false;
+        turnOnOff_TV("off");
     }
 }
 
