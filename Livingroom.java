@@ -17,7 +17,7 @@ public class Livingroom extends Room{
     protected String exit_code;
     protected boolean candle_status = true;
     protected boolean keychain_status = true;
-    protected boolean tv_status = true;
+    protected boolean tv_status = false;
     protected boolean locked_house;//locked front door
    
     /*
