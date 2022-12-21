@@ -142,11 +142,11 @@ public class Livingroom extends Room{
     public boolean turnOnOff_TV(String OnOff){
         if (OnOff.equals("on")){
             if(!tv_status){//only turns on tv when tv_status is false
-                System.out.println("->You turned on the TV. It was playing your favorite show on Netflix. Do you want to keep watching it? (yes/switch a channel/stop watching and turn off tv)");
+                System.out.println("->You turned on the TV. It was playing your favorite show on Netflix. Do you want to keep watching it? (yes/switch a channel/stop watching and turn off the TV)");
                 tv_status = true;
             }
         }else if (OnOff.equals("off")){
-            System.out.println("->You turned off the tv");
+            System.out.println("->You turned off the TV");
             tv_status=false;
         }return tv_status;
     }

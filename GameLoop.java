@@ -464,7 +464,7 @@ public class GameLoop {
                                         livingroom.switchChannel();
                                         System.out.println();
 
-                                    } else if (decision_TV.equals("stop watching and turn off tv")) {
+                                    } else if (decision_TV.equals("stop watching and turn off the tv")) {
                                         livingroom.turnOnOff_TV("off");
                                         System.out.println();
                                         stillSearching = true;
